@@ -7,17 +7,17 @@ function ResultsPage({
   isSearching,
   sortMode,
   onSortModeChange,
-  selectedTripId,
-  onSelectTrip,
 }) {
   const navigate = useNavigate()
-  const fromCode = form.from ? form.from.code : '---'
-  const toCode = form.to ? form.to.code : '---'
+  const fromCode = form.from?.code ?? '---'
+  const toCode = form.to?.code ?? '---'
   const tripTypeLabel = form.tripType === 'one-way' ? 'One-way' : 'Round-trip'
   const passengerLabel = `${form.passengers} passenger${form.passengers === '1' ? '' : 's'}`
-  const trips = tripResults ? tripResults.data : null
-  const meta = tripResults ? tripResults.meta : null
-  const resultsKey = meta ? `${meta.trip_type}-${meta.from}-${meta.to}-${meta.count}` : 'results'
+  const trips = tripResults?.data ?? null
+  const meta = tripResults?.meta ?? null
+  const resultsKey = meta
+    ? `${meta.trip_type}-${meta.from}-${meta.to}-${meta.count}`
+    : 'results'
 
   if (!tripResults && !isSearching) {
     return <Navigate to="/" replace />
@@ -49,11 +49,7 @@ function ResultsPage({
         trips={trips}
         meta={meta}
         isSearching={isSearching}
-        selectedTripId={selectedTripId}
-        onSelectTrip={(tripId) => {
-          onSelectTrip(tripId)
-          navigate(`/checkout/${tripId}`)
-        }}
+        onSelectTrip={(tripId) => navigate(`/checkout/${tripId}`)}
         sortMode={sortMode}
         onSortModeChange={onSortModeChange}
       />

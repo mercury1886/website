@@ -17,11 +17,14 @@ register_shutdown_function(static function (): void {
     $rawBody = ob_get_clean();
     $decoded = json_decode($rawBody, true);
 
-    echo json_encode([
-        'status' => http_response_code(),
-        'body' => is_array($decoded) ? $decoded : null,
-        'raw' => $rawBody,
-    ], JSON_PRETTY_PRINT);
+    echo json_encode(
+        [
+            'status' => http_response_code(),
+            'body' => is_array($decoded) ? $decoded : null,
+            'raw' => $rawBody,
+        ],
+        JSON_PRETTY_PRINT,
+    );
 });
 
 $_SERVER['REQUEST_METHOD'] = $method;

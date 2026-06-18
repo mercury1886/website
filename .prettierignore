@@ -1,0 +1,4 @@
+node_modules
+api/vendor
+dist
+docs

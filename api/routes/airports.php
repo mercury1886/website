@@ -1,15 +1,12 @@
 <?php
 
-$data = loadSampleData();
-$airports = $data['airports'];
-
-usort($airports, static function (array $left, array $right): int {
-    return strcmp((string) $left['code'], (string) $right['code']);
-});
+$query = trim((string) ($_GET['query'] ?? ''));
+$airports = filterAirports(loadAirportsData(), $query);
 
 respond([
     'data' => array_slice($airports, 0, 12),
     'meta' => [
+        'query' => $query,
         'count' => count($airports),
     ],
 ]);

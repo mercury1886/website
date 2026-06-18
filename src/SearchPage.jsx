@@ -2,9 +2,18 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { fetchAirports } from './api'
+import { fetchAirports, getCachedAirports } from './api'
+import SelectField from './SelectField'
 
-const passengerOptions = [1, 2, 3, 4, 5, 6]
+const passengerOptions = [1, 2, 3, 4, 5, 6].map((count) => ({
+  value: String(count),
+  label: `${count} passenger${count > 1 ? 's' : ''}`,
+}))
+
+const tripTypeOptions = [
+  { value: 'one-way', label: 'One-way' },
+  { value: 'round-trip', label: 'Round-trip' },
+]
 
 function formatDateLabel(date) {
   if (!date) {
@@ -43,43 +52,49 @@ function AirportSearchField({ id, label, value, onChange }) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [isOpen, setIsOpen] = useState(false)
-  const [debouncedQuery, setDebouncedQuery] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const inputValue = isOpen ? query : value ? formatAirportLine(value) : ''
 
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => {
-      setDebouncedQuery(query.trim())
-    }, 50)
+  function openResults(nextQuery) {
+    const cachedAirports = getCachedAirports(nextQuery)
 
-    return () => {
-      window.clearTimeout(timeoutId)
+    setIsOpen(true)
+    setQuery(nextQuery)
+
+    if (cachedAirports === null) {
+      setIsLoading(true)
+      return
     }
-  }, [query])
+
+    setResults(cachedAirports)
+    setIsLoading(false)
+  }
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!isOpen || getCachedAirports(query) !== null) {
       return undefined
     }
 
     let isActive = true
 
-    async function loadResults() {
-      const airports = await fetchAirports(debouncedQuery)
+    const timeoutId = window.setTimeout(async () => {
+      const airports = await fetchAirports(query.trim())
 
       if (isActive) {
         setResults(airports)
+        setIsLoading(false)
       }
-    }
-
-    loadResults()
+    }, 50)
 
     return () => {
       isActive = false
+      window.clearTimeout(timeoutId)
     }
-  }, [debouncedQuery, isOpen])
+  }, [isOpen, query])
 
   function closeResults() {
     setIsOpen(false)
+    setIsLoading(false)
     setQuery('')
   }
 
@@ -92,8 +107,7 @@ function AirportSearchField({ id, label, value, onChange }) {
   }
 
   function handleFocus() {
-    setIsOpen(true)
-    setQuery('')
+    openResults('')
   }
 
   function handleSelect(airport) {
@@ -111,10 +125,7 @@ function AirportSearchField({ id, label, value, onChange }) {
           id={id}
           type="text"
           value={inputValue}
-          onChange={(event) => {
-            setQuery(event.target.value)
-            setIsOpen(true)
-          }}
+          onChange={(event) => openResults(event.target.value)}
           onFocus={handleFocus}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
@@ -130,28 +141,39 @@ function AirportSearchField({ id, label, value, onChange }) {
           autoComplete="off"
         />
 
-        {isOpen && results.length > 0 && (
+        {isOpen && (
           <div className="search-results-panel">
-            <ul className="search-results-list">
-              {results.map((airport) => (
-                <li key={`${label}-${airport.code}`}>
-                  <button
-                    type="button"
-                    className="search-result-button"
-                    onClick={() => handleSelect(airport)}
-                    onMouseDown={(event) => {
-                      event.preventDefault()
-                    }}
-                  >
-                    <strong>{airport.code}</strong>
-                    <div>
-                      <span>{airport.city}</span>
-                      <small>{airport.name}</small>
-                    </div>
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {isLoading ? (
+              <div className="search-results-status">
+                <span className="search-results-spinner" aria-hidden="true" />
+                <span>Loading airports...</span>
+              </div>
+            ) : results.length > 0 ? (
+              <ul className="search-results-list">
+                {results.map((airport) => (
+                  <li key={`${label}-${airport.code}`}>
+                    <button
+                      type="button"
+                      className="search-result-button"
+                      onClick={() => handleSelect(airport)}
+                      onMouseDown={(event) => {
+                        event.preventDefault()
+                      }}
+                    >
+                      <strong>{airport.code}</strong>
+                      <div>
+                        <span>{airport.city}</span>
+                        <small>{airport.name}</small>
+                      </div>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="search-results-status">
+                <span>No airports found.</span>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -159,13 +181,23 @@ function AirportSearchField({ id, label, value, onChange }) {
   )
 }
 
-function SearchPage({ form, onFieldChange, onSearch, isSearching, searchError }) {
+function SearchPage({
+  form,
+  onFieldChange,
+  onSearch,
+  isSearching,
+  searchError,
+}) {
   const navigate = useNavigate()
   const location = useLocation()
   const today = new Date()
   const fromAirport = form.from
   const toAirport = form.to
-  const routeIsSame = fromAirport && toAirport && fromAirport.code === toAirport.code
+  const tripTypeLabel = form.tripType === 'one-way' ? 'One-way' : 'Round-trip'
+  const routeHeadline = formatRouteHeadline(fromAirport, toAirport)
+  const routeSubline = formatRouteSubline(fromAirport, toAirport)
+  const routeIsSame =
+    fromAirport && toAirport && fromAirport.code === toAirport.code
   const routeIsValid =
     form.from &&
     form.to &&
@@ -205,8 +237,8 @@ function SearchPage({ form, onFieldChange, onSearch, isSearching, searchError })
           <p className="eyebrow">Search</p>
           <h1>The premier way to find cheap tickets.</h1>
           <p className="hero-copy-text">
-            Search routes, compare fares, and move into a dedicated trip view once
-            you find a match worth chasing.
+            Search routes, compare fares, and move into a dedicated trip view
+            once you find a match worth chasing.
           </p>
         </div>
 
@@ -214,8 +246,8 @@ function SearchPage({ form, onFieldChange, onSearch, isSearching, searchError })
           <p className="route-board-label">Preview lane</p>
           {!fromAirport && !toAirport ? (
             <div className="route-board-empty">
-              <strong>{formatRouteHeadline(fromAirport, toAirport)}</strong>
-              <span>{formatRouteSubline(fromAirport, toAirport)}</span>
+              <strong>{routeHeadline}</strong>
+              <span>{routeSubline}</span>
             </div>
           ) : (
             <>
@@ -233,7 +265,7 @@ function SearchPage({ form, onFieldChange, onSearch, isSearching, searchError })
           <div className="route-board-meta">
             <div>
               <span>Trip type</span>
-              <strong>{form.tripType === 'one-way' ? 'One-way' : 'Round-trip'}</strong>
+              <strong>{tripTypeLabel}</strong>
             </div>
             <div>
               <span>Passengers</span>
@@ -251,41 +283,27 @@ function SearchPage({ form, onFieldChange, onSearch, isSearching, searchError })
               <h2>Start a trip search</h2>
             </div>
             <p className="card-copy">
-              Search by airport code or city name, then pick dates and trip type.
+              Search by airport code or city name, then pick dates and trip
+              type.
             </p>
           </div>
 
           <div className="field-grid">
-            <label className="field">
-              <span>Passengers</span>
-              <select
-                name="passengers"
-                value={form.passengers}
-                onChange={(event) =>
-                  onFieldChange('passengers', event.target.value)
-                }
-              >
-                {passengerOptions.map((count) => (
-                  <option key={count} value={count}>
-                    {count} passenger{count > 1 ? 's' : ''}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <SelectField
+              id="passenger-count"
+              label="Passengers"
+              value={form.passengers}
+              options={passengerOptions}
+              onChange={(nextValue) => onFieldChange('passengers', nextValue)}
+            />
 
-            <label className="field">
-              <span>Trip type</span>
-              <select
-                name="tripType"
-                value={form.tripType}
-                onChange={(event) =>
-                  onFieldChange('tripType', event.target.value)
-                }
-              >
-                <option value="one-way">One-way</option>
-                <option value="round-trip">Round-trip</option>
-              </select>
-            </label>
+            <SelectField
+              id="trip-type"
+              label="Trip type"
+              value={form.tripType}
+              options={tripTypeOptions}
+              onChange={(nextValue) => onFieldChange('tripType', nextValue)}
+            />
 
             <AirportSearchField
               id="from-airport"
@@ -357,15 +375,15 @@ function SearchPage({ form, onFieldChange, onSearch, isSearching, searchError })
 
         <aside className="summary-card">
           <p className="summary-label">Current selection</p>
-          <h2>{formatRouteHeadline(fromAirport, toAirport)}</h2>
+          <h2>{routeHeadline}</h2>
           <dl className="summary-list">
             <div>
               <dt>Route</dt>
-              <dd>{formatRouteSubline(fromAirport, toAirport)}</dd>
+              <dd>{routeSubline}</dd>
             </div>
             <div>
               <dt>Trip type</dt>
-              <dd>{form.tripType === 'one-way' ? 'One-way' : 'Round-trip'}</dd>
+              <dd>{tripTypeLabel}</dd>
             </div>
             <div>
               <dt>Passengers</dt>

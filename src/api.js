@@ -1,4 +1,22 @@
+const airportCache = new Map()
+
+function airportQueryKey(query = '') {
+  return query.trim().toLowerCase()
+}
+
+export function getCachedAirports(query = '') {
+  const key = airportQueryKey(query)
+  return airportCache.has(key) ? airportCache.get(key) : null
+}
+
 export async function fetchAirports(query = '') {
+  const key = airportQueryKey(query)
+  const cachedAirports = getCachedAirports(query)
+
+  if (cachedAirports !== null) {
+    return cachedAirports
+  }
+
   const searchParams = new URLSearchParams()
 
   if (query.trim() !== '') {
@@ -6,20 +24,22 @@ export async function fetchAirports(query = '') {
   }
 
   const queryString = searchParams.toString()
-  const url = queryString
-    ? `/api/airports/search?${queryString}`
-    : '/api/airports'
+  const url = queryString ? `/api/airports?${queryString}` : '/api/airports'
 
   try {
     const response = await fetch(url)
 
     if (!response.ok) {
+      airportCache.set(key, [])
       return []
     }
 
     const payload = await response.json()
-    return Array.isArray(payload.data) ? payload.data : []
+    const airports = Array.isArray(payload.data) ? payload.data : []
+    airportCache.set(key, airports)
+    return airports
   } catch {
+    airportCache.set(key, [])
     return []
   }
 }
