@@ -22,7 +22,7 @@ The frontend is a React SPA. The backend is a small PHP API that serves airport 
   - Pagination
 - Trip details modal
 - Trip review and checkout flow
-- Automated frontend and API tests
+- Automated PHP API tests with PHPUnit
 - Docker-based local setup
 
 ## Tech stack
@@ -30,7 +30,7 @@ The frontend is a React SPA. The backend is a small PHP API that serves airport 
 - Frontend: React 19, Vite, React Router
 - Backend: PHP 8.3
 - Local environment: Docker Compose
-- Test tools: Vitest for frontend utilities, plain PHP test runner for API routes
+- Test tools: PHPUnit for API routes
 
 ## Project structure
 
@@ -101,14 +101,8 @@ The overall structure follows the assignment example, with a few added fields us
         "arrival_time": "10:05",
         "price": "273.23",
         "baggage": {
-          "carry_on": {
-            "status": "included",
-            "price": null
-          },
-          "checked_bag": {
-            "status": "extra",
-            "price": "35.00"
-          }
+          "carry_on": 1,
+          "checked_bag": 0
         }
       }
     ]
@@ -210,12 +204,6 @@ Extended endpoint documentation is available in [docs/web-services.md](docs/web-
 
 ## Testing
 
-### Frontend tests
-
-```bash
-npm run test
-```
-
 ### Frontend linting
 
 ```bash
@@ -231,15 +219,14 @@ npm run build
 ### PHP API tests
 
 ```bash
-php api/tests/api_test.php
+docker compose run --rm --no-deps api composer test
 ```
 
 If you are running entirely through Docker, use:
 
 ```bash
-docker compose exec frontend npm run test
 docker compose exec frontend npm run lint
-docker compose exec api php /app/api/tests/api_test.php
+docker compose exec api composer test
 ```
 
 ## Assignment coverage

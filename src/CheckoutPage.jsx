@@ -1,36 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import BaggageBadge from './BaggageStat'
+import { baggageCount } from './baggage'
 import { formatCurrency } from './tripDisplay'
 
-function BaggageIcon({ type }) {
-  if (type === 'carry_on') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M9 7V6a3 3 0 0 1 6 0v1h2.5A2.5 2.5 0 0 1 20 9.5v7A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-7A2.5 2.5 0 0 1 6.5 7H9Zm2 0h2V6a1 1 0 1 0-2 0v1Z" />
-      </svg>
-    )
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 5.5V5a3 3 0 0 1 6 0v.5h1.5A2.5 2.5 0 0 1 19 8v10.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 18.5V8a2.5 2.5 0 0 1 2.5-2.5H9Zm2 0h2V5a1 1 0 1 0-2 0v.5Z" />
-      <path d="M8 10h8M8 13h8" />
-    </svg>
-  )
-}
-
-function baggageValue(offer) {
-  return offer?.status === 'included' ? '1' : 'X'
-}
+const checkoutSteps = [
+  { step: 1, label: 'Trip review' },
+  { step: 2, label: 'Checkout' },
+  { step: 3, label: 'Booked' },
+]
 
 function BaggageStat({ type, offer }) {
   return (
-    <span className="review-baggage-stat">
-      <span className="review-baggage-icon">
-        <BaggageIcon type={type} />
-      </span>
-      <strong>{baggageValue(offer)}</strong>
-    </span>
+    <BaggageBadge
+      type={type}
+      count={baggageCount(offer)}
+      className="review-baggage-stat"
+      iconClassName="review-baggage-icon"
+    />
   )
 }
 
@@ -54,6 +41,18 @@ function createTravelers(passengers) {
   return Array.from({ length: passengers }, () => createTraveler())
 }
 
+function createCheckoutDetails(passengers) {
+  return {
+    travelers: createTravelers(passengers),
+    email: '',
+    phone: '',
+    cardholder: '',
+    cardNumber: '',
+    expiry: '',
+    cvv: '',
+  }
+}
+
 function checkoutFeeLines(trip, passengers) {
   return [
     {
@@ -64,14 +63,20 @@ function checkoutFeeLines(trip, passengers) {
     {
       id: 'airport',
       label: 'Airport recovery fee',
-      price: roundAmount(8 + (trip.segments.length * 5.5) + (trip.stop_count * 3.25)),
+      price: roundAmount(
+        8 + trip.segments.length * 5.5 + trip.stop_count * 3.25
+      ),
     },
     {
       id: 'service',
       label: 'Booking service fee',
-      price: roundAmount(9.5 + (passengers * 2.25)),
+      price: roundAmount(9.5 + passengers * 2.25),
     },
   ]
+}
+
+function feeTotal(feeLines) {
+  return feeLines.reduce((total, item) => total + item.price, 0)
 }
 
 function fareLineLabel(direction) {
@@ -130,11 +135,7 @@ function checkoutRouteLines(trip) {
 function StageRail({ currentStage }) {
   return (
     <div className="checkout-step-rail">
-      {[
-        { step: 1, label: 'Trip review' },
-        { step: 2, label: 'Checkout' },
-        { step: 3, label: 'Booked' },
-      ].map((item) => (
+      {checkoutSteps.map((item) => (
         <div
           key={item.step}
           className={`checkout-step ${stageState(item.step, currentStage)}`}
@@ -161,8 +162,8 @@ function CheckoutHero({ trip, form, currentStage }) {
           </p>
         ))}
         <p className="hero-copy-text">
-          Review the selected itinerary, fill in traveler details, and finish the
-          booking flow.
+          Review the selected itinerary, fill in traveler details, and finish
+          the booking flow.
         </p>
 
         <div className="checkout-hero-meta">
@@ -188,15 +189,20 @@ function ReviewLegCard({ leg, passengers }) {
             alt={leg.airline_name}
           />
           <div className="checkout-leg-brand-copy">
-            <strong>{leg.airline_name} ({leg.airline_code}{leg.flight_number})</strong>
+            <strong>
+              {leg.airline_name} ({leg.airline_code}
+              {leg.flight_number})
+            </strong>
             <span>{leg.aircraft.model}</span>
           </div>
         </div>
         <div className="checkout-leg-head-meta">
-          <span className="checkout-leg-price">{formatCurrency(leg.price * passengers)}</span>
+          <span className="checkout-leg-price">
+            {formatCurrency(leg.price * passengers)}
+          </span>
           <div className="review-baggage-row">
-            <BaggageStat type="carry_on" offer={leg.baggage?.carry_on} />
-            <BaggageStat type="checked_bag" offer={leg.baggage?.checked_bag} />
+            <BaggageStat type="carry_on" offer={leg.baggage.carry_on} />
+            <BaggageStat type="checked_bag" offer={leg.baggage.checked_bag} />
           </div>
         </div>
       </div>
@@ -204,7 +210,9 @@ function ReviewLegCard({ leg, passengers }) {
       <div className="checkout-leg-route">
         <div>
           <strong>{leg.departure_time_label}</strong>
-          <span>{leg.departure_airport} {leg.departure_city}</span>
+          <span>
+            {leg.departure_airport} {leg.departure_city}
+          </span>
         </div>
         <div className="checkout-leg-route-bar">
           <small>{leg.duration_display}</small>
@@ -212,7 +220,9 @@ function ReviewLegCard({ leg, passengers }) {
         </div>
         <div>
           <strong>{leg.arrival_time_label}</strong>
-          <span>{leg.arrival_airport} {leg.arrival_city}</span>
+          <span>
+            {leg.arrival_airport} {leg.arrival_city}
+          </span>
         </div>
       </div>
     </article>
@@ -225,7 +235,9 @@ function ReviewSegment({ segment, passengers }) {
       <div className="checkout-section-heading">
         <div>
           <p className="section-label">{segment.direction}</p>
-          <h2>{segment.from} to {segment.to}</h2>
+          <h2>
+            {segment.from} to {segment.to}
+          </h2>
         </div>
         <div className="checkout-chip-stack">
           <span>{segment.travel_date_label}</span>
@@ -256,7 +268,8 @@ function ReviewSidebar({ trip, passengers, onContinue }) {
         <p className="section-label">Trip review</p>
         <h2>{formatCurrency(trip.total_price)}</h2>
         <p className="checkout-total-copy">
-          Fare total for {travelerLabel(passengers)} before taxes and service fees.
+          Fare total for {travelerLabel(passengers)} before taxes and service
+          fees.
         </p>
 
         <dl className="checkout-breakdown">
@@ -299,7 +312,11 @@ function ReviewSidebar({ trip, passengers, onContinue }) {
 function TravelerCard({ traveler, index, showTitle, onChange }) {
   return (
     <div className="checkout-traveler-card">
-      {showTitle && <strong className="checkout-traveler-card-title">Traveler {index + 1}</strong>}
+      {showTitle && (
+        <strong className="checkout-traveler-card-title">
+          Traveler {index + 1}
+        </strong>
+      )}
 
       <div className="checkout-form-grid">
         <label className="checkout-field">
@@ -307,7 +324,9 @@ function TravelerCard({ traveler, index, showTitle, onChange }) {
           <input
             type="text"
             value={traveler.firstName}
-            onChange={(event) => onChange(index, 'firstName', event.target.value)}
+            onChange={(event) =>
+              onChange(index, 'firstName', event.target.value)
+            }
             placeholder="Alex"
             autoComplete="given-name"
             minLength={2}
@@ -320,7 +339,9 @@ function TravelerCard({ traveler, index, showTitle, onChange }) {
           <input
             type="text"
             value={traveler.lastName}
-            onChange={(event) => onChange(index, 'lastName', event.target.value)}
+            onChange={(event) =>
+              onChange(index, 'lastName', event.target.value)
+            }
             placeholder="Mercer"
             autoComplete="family-name"
             minLength={2}
@@ -333,7 +354,13 @@ function TravelerCard({ traveler, index, showTitle, onChange }) {
           <input
             type="text"
             value={traveler.passportNumber}
-            onChange={(event) => onChange(index, 'passportNumber', event.target.value.toUpperCase())}
+            onChange={(event) =>
+              onChange(
+                index,
+                'passportNumber',
+                event.target.value.toUpperCase()
+              )
+            }
             placeholder="A1234567"
             autoComplete="off"
             minLength={6}
@@ -348,7 +375,13 @@ function TravelerCard({ traveler, index, showTitle, onChange }) {
   )
 }
 
-function CheckoutForm({ details, totalDue, onTravelerChange, onFieldChange, onPayNow }) {
+function CheckoutForm({
+  details,
+  totalDue,
+  onTravelerChange,
+  onFieldChange,
+  onPayNow,
+}) {
   return (
     <section className="checkout-section-card">
       <div className="checkout-section-heading">
@@ -436,7 +469,9 @@ function CheckoutForm({ details, totalDue, onTravelerChange, onFieldChange, onPa
               <input
                 type="text"
                 value={details.cardholder}
-                onChange={(event) => onFieldChange('cardholder', event.target.value)}
+                onChange={(event) =>
+                  onFieldChange('cardholder', event.target.value)
+                }
                 placeholder="Alex Mercer"
                 autoComplete="cc-name"
                 minLength={2}
@@ -449,7 +484,9 @@ function CheckoutForm({ details, totalDue, onTravelerChange, onFieldChange, onPa
               <input
                 type="text"
                 value={details.cardNumber}
-                onChange={(event) => onFieldChange('cardNumber', event.target.value)}
+                onChange={(event) =>
+                  onFieldChange('cardNumber', event.target.value)
+                }
                 placeholder="4242 4242 4242 4242"
                 autoComplete="cc-number"
                 inputMode="numeric"
@@ -466,7 +503,9 @@ function CheckoutForm({ details, totalDue, onTravelerChange, onFieldChange, onPa
               <input
                 type="text"
                 value={details.expiry}
-                onChange={(event) => onFieldChange('expiry', event.target.value)}
+                onChange={(event) =>
+                  onFieldChange('expiry', event.target.value)
+                }
                 placeholder="08/29"
                 autoComplete="cc-exp"
                 inputMode="numeric"
@@ -496,10 +535,7 @@ function CheckoutForm({ details, totalDue, onTravelerChange, onFieldChange, onPa
         </section>
 
         <div className="checkout-pay-row">
-          <button
-            type="submit"
-            className="trip-select-button selected"
-          >
+          <button type="submit" className="trip-select-button selected">
             Pay now
           </button>
         </div>
@@ -510,8 +546,7 @@ function CheckoutForm({ details, totalDue, onTravelerChange, onFieldChange, onPa
 
 function CheckoutSidebar({ trip, passengers, feeLines }) {
   const fareLines = tripFareLines(trip)
-  const feeTotal = feeLines.reduce((total, item) => total + item.price, 0)
-  const grandTotal = roundAmount(trip.total_price + feeTotal)
+  const grandTotal = roundAmount(trip.total_price + feeTotal(feeLines))
 
   return (
     <aside className="checkout-sidebar">
@@ -594,32 +629,17 @@ function SuccessScreen() {
   )
 }
 
-function CheckoutPage({ tripResults, form, selectedTripId, onSelectTrip }) {
+function CheckoutPage({ tripResults, form }) {
   const { tripId } = useParams()
-  const trips = tripResults ? tripResults.data : []
+  const trips = tripResults?.data ?? []
   const trip = trips.find((item) => item.id === tripId)
   const passengers = Math.max(1, Number(form.passengers) || 1)
   const feeLines = trip ? checkoutFeeLines(trip, passengers) : []
+  const totalDue = trip ? roundAmount(trip.total_price + feeTotal(feeLines)) : 0
   const [stage, setStage] = useState('review')
-  const [checkoutDetails, setCheckoutDetails] = useState(() => ({
-    travelers: createTravelers(passengers),
-    email: '',
-    phone: '',
-    cardholder: '',
-    cardNumber: '',
-    expiry: '',
-    cvv: '',
-  }))
-
-  useEffect(() => {
-    if (!trip) {
-      return
-    }
-
-    if (selectedTripId !== trip.id) {
-      onSelectTrip(trip.id)
-    }
-  }, [onSelectTrip, selectedTripId, trip])
+  const [checkoutDetails, setCheckoutDetails] = useState(() =>
+    createCheckoutDetails(passengers)
+  )
 
   useEffect(() => {
     if (stage !== 'processing') {
@@ -634,6 +654,27 @@ function CheckoutPage({ tripResults, form, selectedTripId, onSelectTrip }) {
       window.clearTimeout(timeoutId)
     }
   }, [stage])
+
+  function updateTraveler(index, field, value) {
+    setCheckoutDetails((currentDetails) => ({
+      ...currentDetails,
+      travelers: currentDetails.travelers.map((traveler, travelerIndex) =>
+        travelerIndex === index
+          ? {
+              ...traveler,
+              [field]: value,
+            }
+          : traveler
+      ),
+    }))
+  }
+
+  function updateCheckoutField(field, value) {
+    setCheckoutDetails((currentDetails) => ({
+      ...currentDetails,
+      [field]: value,
+    }))
+  }
 
   if (!tripResults || !trip) {
     return <Navigate to="/results" replace />
@@ -672,28 +713,9 @@ function CheckoutPage({ tripResults, form, selectedTripId, onSelectTrip }) {
           ) : (
             <CheckoutForm
               details={checkoutDetails}
-              totalDue={roundAmount(
-                trip.total_price + feeLines.reduce((total, fee) => total + fee.price, 0),
-              )}
-              onTravelerChange={(index, field, value) =>
-                setCheckoutDetails((currentDetails) => ({
-                  ...currentDetails,
-                  travelers: currentDetails.travelers.map((traveler, travelerIndex) =>
-                    travelerIndex === index
-                      ? {
-                          ...traveler,
-                          [field]: value,
-                        }
-                      : traveler,
-                  ),
-                }))
-              }
-              onFieldChange={(field, value) =>
-                setCheckoutDetails((currentDetails) => ({
-                  ...currentDetails,
-                  [field]: value,
-                }))
-              }
+              totalDue={totalDue}
+              onTravelerChange={updateTraveler}
+              onFieldChange={updateCheckoutField}
               onPayNow={() => setStage('processing')}
             />
           )}

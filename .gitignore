@@ -8,6 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+api/vendor/
+api/.phpunit.cache/
 dist
 dist-ssr
 *.local

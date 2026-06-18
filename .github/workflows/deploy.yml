@@ -6,6 +6,14 @@ on:
   pull_request:
     branches: [main]
 
+env:
+  NODE_VERSION: 22
+  PHP_VERSION: '8.3'
+  FRONTEND_PATH: /var/www/portfolio
+  API_ROOT: /var/www/trip-builder-api
+  API_PORT: 8000
+  API_SERVICE: trip-builder-api
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,14 +25,32 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+          tools: composer:v2
+
+      - name: Install API dependencies
+        working-directory: api
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Run API tests
+        working-directory: api
+        run: composer test
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -38,7 +64,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - name: Install dependencies
@@ -47,23 +73,69 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+          tools: composer:v2
+
+      - name: Prepare API runtime files
+        working-directory: api
+        run: composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.OCI_PORT }} -H ${{ secrets.OCI_HOST }} >> ~/.ssh/known_hosts
 
       - name: Write SSH key
         run: |
           echo "${{ secrets.OCI_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
 
+      - name: Create server directories
+        run: |
+          ssh -i ~/.ssh/deploy_key -p ${{ secrets.OCI_PORT }} ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} \
+          "sudo mkdir -p '${{ env.FRONTEND_PATH }}' '${{ env.API_ROOT }}/api' && sudo chown -R '${{ secrets.OCI_USER }}':'${{ secrets.OCI_USER }}' '${{ env.FRONTEND_PATH }}' '${{ env.API_ROOT }}'"
+
       - name: Upload dist to server
         run: |
           rsync -avz --delete \
             -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.OCI_PORT }}" \
-            dist/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:/var/www/portfolio/
+            dist/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:${{ env.FRONTEND_PATH }}/
 
-      - name: Test and reload nginx
+      - name: Upload API to server
         run: |
-          ssh -i ~/.ssh/deploy_key -p ${{ secrets.OCI_PORT }} ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} \
-          "sudo nginx -t && sudo systemctl reload nginx"
+          rsync -avz --delete \
+            --exclude "tests" \
+            --exclude ".phpunit.cache" \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.OCI_PORT }}" \
+            api/ ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }}:${{ env.API_ROOT }}/api/
+
+      - name: Configure API service
+        run: |
+          ssh -i ~/.ssh/deploy_key -p ${{ secrets.OCI_PORT }} ${{ secrets.OCI_USER }}@${{ secrets.OCI_HOST }} <<EOF
+          set -e
+
+          cat <<'SERVICE' | sudo tee /etc/systemd/system/${{ env.API_SERVICE }}.service > /dev/null
+          [Unit]
+          Description=Trip Builder API
+          After=network.target
+
+          [Service]
+          WorkingDirectory=${{ env.API_ROOT }}/api
+          ExecStart=/usr/bin/php -S 127.0.0.1:${{ env.API_PORT }} -t public
+          Restart=always
+          User=${{ secrets.OCI_USER }}
+          Group=${{ secrets.OCI_USER }}
+
+          [Install]
+          WantedBy=multi-user.target
+          SERVICE
+
+          sudo systemctl daemon-reload
+          sudo systemctl enable ${{ env.API_SERVICE }}
+          sudo systemctl restart ${{ env.API_SERVICE }}
+          curl -fsS http://127.0.0.1:${{ env.API_PORT }}/health > /dev/null
+          EOF

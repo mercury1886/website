@@ -1,0 +1,13 @@
+{
+  "name": "trip-builder/api",
+  "type": "project",
+  "require-dev": {
+    "phpunit/phpunit": "^12.0"
+  },
+  "scripts": {
+    "test": "phpunit --testdox"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

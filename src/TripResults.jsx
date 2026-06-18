@@ -1,4 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
+import BaggageBadge from './BaggageStat'
+import { minimumBaggageCount } from './baggage'
+import SelectField from './SelectField'
 import {
   buildAirlineOptions,
   buildStopOptions,
@@ -9,50 +12,30 @@ import {
   stopCountLabel,
 } from './tripDisplay'
 
-function BaggageIcon({ type }) {
-  if (type === 'carry_on') {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M9 7V6a3 3 0 0 1 6 0v1h2.5A2.5 2.5 0 0 1 20 9.5v7A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-7A2.5 2.5 0 0 1 6.5 7H9Zm2 0h2V6a1 1 0 1 0-2 0v1Z" />
-      </svg>
-    )
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 5.5V5a3 3 0 0 1 6 0v.5h1.5A2.5 2.5 0 0 1 19 8v10.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 5 18.5V8a2.5 2.5 0 0 1 2.5-2.5H9Zm2 0h2V5a1 1 0 1 0-2 0v.5Z" />
-      <path d="M8 10h8M8 13h8" />
-    </svg>
-  )
-}
-
-function baggageCount(legs, type) {
-  const includedCount = legs.filter(
-    (leg) => leg.baggage?.[type]?.status === 'included',
-  ).length
-
-  return includedCount > 0 ? String(includedCount) : 'X'
-}
+const metricOptions = [
+  ['best', 'Best'],
+  ['cheapest', 'Cheapest'],
+  ['fastest', 'Fastest'],
+]
 
 function baggageTitle(legs, type) {
   const label = type === 'carry_on' ? 'Carry-on' : 'Checked bag'
-  const count = baggageCount(legs, type)
+  const count = minimumBaggageCount(legs, type)
 
   if (count === 'X') {
-    return `${label} not included on this option`
+    return `No ${label.toLowerCase()} allowance on this option`
   }
 
-  return `${label} included on ${count} leg${count === '1' ? '' : 's'}`
+  return `${label} allowance: ${count} item${count === '1' ? '' : 's'}`
 }
 
-function BaggageStat({ type, legs }) {
+function SegmentBaggageStat({ type, legs }) {
   return (
-    <span className="baggage-stat" title={baggageTitle(legs, type)}>
-      <span className="baggage-stat-icon">
-        <BaggageIcon type={type} />
-      </span>
-      <strong>{baggageCount(legs, type)}</strong>
-    </span>
+    <BaggageBadge
+      type={type}
+      count={minimumBaggageCount(legs, type)}
+      title={baggageTitle(legs, type)}
+    />
   )
 }
 
@@ -85,7 +68,7 @@ function TrackLine({ stopCount }) {
     1: ['50%'],
     2: ['33%', '66%'],
   }
-  const markers = markersByStopCount[stopCount] || []
+  const markers = markersByStopCount[stopCount] ?? []
 
   return (
     <div className="segment-track-line">
@@ -110,8 +93,13 @@ function FlightModalLeg({ leg, layover }) {
           alt={leg.airline_name}
         />
         <div className="flight-modal-leg-labels">
-          <strong>{leg.airline_name} ({leg.airline_code}{leg.flight_number})</strong>
-          <span className="flight-modal-aircraft-tag">{leg.aircraft.model}</span>
+          <strong>
+            {leg.airline_name} ({leg.airline_code}
+            {leg.flight_number})
+          </strong>
+          <span className="flight-modal-aircraft-tag">
+            {leg.aircraft.model}
+          </span>
         </div>
       </div>
 
@@ -125,8 +113,8 @@ function FlightModalLeg({ leg, layover }) {
         <div className="flight-modal-leg-content">
           <div className="flight-modal-leg-stop">
             <strong>
-              {leg.departure_time_label} {leg.departure_airport} {leg.departure_city}{' '}
-              {leg.departure_airport_name}
+              {leg.departure_time_label} {leg.departure_airport}{' '}
+              {leg.departure_city} {leg.departure_airport_name}
             </strong>
           </div>
 
@@ -153,8 +141,12 @@ function FlightModalLeg({ leg, layover }) {
 }
 
 function FlightModalSegment({ segment, highlighted }) {
+  const lastLeg = segment.legs[segment.legs.length - 1]
+
   return (
-    <section className={`flight-modal-segment${highlighted ? ' highlighted' : ''}`}>
+    <section
+      className={`flight-modal-segment${highlighted ? ' highlighted' : ''}`}
+    >
       <div className="flight-modal-segment-heading">
         <strong>{segment.direction}</strong>
         <span>{segment.travel_date_label}</span>
@@ -163,7 +155,7 @@ function FlightModalSegment({ segment, highlighted }) {
       <div className="flight-modal-card">
         <div className="flight-modal-summary">
           <div className="flight-modal-summary-brand">
-            <CarrierStrip carriers={segment.carriers ?? []} />
+            <CarrierStrip carriers={segment.carriers} />
           </div>
           <div className="flight-modal-summary-time">
             <strong>{segment.departure_time_label}</strong>
@@ -172,7 +164,9 @@ function FlightModalSegment({ segment, highlighted }) {
           <div className="flight-modal-summary-track">
             <span>{segment.duration_display}</span>
             <TrackLine stopCount={segment.stop_count} />
-            <small>{segment.stop_count === 0 ? 'Direct' : segment.stop_label}</small>
+            <small>
+              {segment.stop_count === 0 ? 'Direct' : segment.stop_label}
+            </small>
           </div>
           <div className="flight-modal-summary-time">
             <strong>{segment.arrival_time_label}</strong>
@@ -191,7 +185,7 @@ function FlightModalSegment({ segment, highlighted }) {
         </div>
 
         <div className="flight-modal-footer">
-          <span>Arrives: {segment.legs[segment.legs.length - 1].arrival_date_label}</span>
+          <span>Arrives: {lastLeg.arrival_date_label}</span>
           <span>Journey duration: {segment.duration_display}</span>
         </div>
       </div>
@@ -259,14 +253,14 @@ function SegmentCard({ segment, onOpenDetails }) {
     <div className="segment-card">
       <div className="segment-card-top">
         <div className="segment-brand-stack">
-          <CarrierStrip carriers={segment.carriers ?? []} />
+          <CarrierStrip carriers={segment.carriers} />
           <span className="segment-aircraft-label">
             {segmentAircraftLabel(segment.legs)}
           </span>
         </div>
         <div className="segment-baggage-inline">
-          <BaggageStat type="carry_on" legs={segment.legs} />
-          <BaggageStat type="checked_bag" legs={segment.legs} />
+          <SegmentBaggageStat type="carry_on" legs={segment.legs} />
+          <SegmentBaggageStat type="checked_bag" legs={segment.legs} />
         </div>
       </div>
 
@@ -280,7 +274,9 @@ function SegmentCard({ segment, onOpenDetails }) {
           <span>{segment.duration_display}</span>
           <TrackLine stopCount={segment.stop_count} />
           {segment.stop_count > 0 && (
-            <small className="segment-track-stop-label">{segment.stop_label}</small>
+            <small className="segment-track-stop-label">
+              {segment.stop_label}
+            </small>
           )}
         </div>
 
@@ -324,9 +320,9 @@ function ResultToolbar({ pageStart, pageEnd, visibleCount }) {
   )
 }
 
-function TripCard({ trip, selected, onSelect, onOpenDetails }) {
+function TripCard({ trip, onSelect, onOpenDetails }) {
   return (
-    <article className={`trip-card${selected ? ' selected' : ''}`}>
+    <article className="trip-card">
       <div className="trip-card-body">
         {trip.segments.map((segment) => (
           <SegmentCard
@@ -338,9 +334,15 @@ function TripCard({ trip, selected, onSelect, onOpenDetails }) {
       </div>
 
       <aside className="trip-card-side">
-        <span className="trip-deal-label">{stopCountLabel(trip.stop_count)}</span>
-        <strong className="trip-price">{formatCurrency(trip.total_price)}</strong>
-        <span className="trip-duration">{trip.total_duration_display} total</span>
+        <span className="trip-deal-label">
+          {stopCountLabel(trip.stop_count)}
+        </span>
+        <strong className="trip-price">
+          {formatCurrency(trip.total_price)}
+        </strong>
+        <span className="trip-duration">
+          {trip.total_duration_display} total
+        </span>
         <button type="button" className="trip-select-button" onClick={onSelect}>
           Book
         </button>
@@ -397,6 +399,16 @@ function FilterSection({ title, children }) {
   )
 }
 
+function createFilters(maxPrice) {
+  return {
+    maxPrice,
+    preferredAirline: '',
+    stopCounts: [],
+    requireCarryOnIncluded: false,
+    requireCheckedBagIncluded: false,
+  }
+}
+
 function TripFilters({
   airlineOptions,
   minPrice,
@@ -442,18 +454,20 @@ function TripFilters({
       </FilterSection>
 
       <FilterSection title="Airline">
-        <select
-          className="filter-select"
+        <SelectField
+          id="preferred-airline"
+          label="Preferred airline"
           value={filters.preferredAirline}
-          onChange={(event) => onAirlineChange(event.target.value)}
-        >
-          <option value="">Any airline</option>
-          {airlineOptions.map((airline) => (
-            <option key={airline.code} value={airline.code}>
-              {airline.name}
-            </option>
-          ))}
-        </select>
+          options={[
+            { value: '', label: 'Any airline' },
+            ...airlineOptions.map((airline) => ({
+              value: airline.code,
+              label: airline.name,
+            })),
+          ]}
+          onChange={onAirlineChange}
+          panelClassName="filter-select-panel"
+        />
       </FilterSection>
 
       {showStopFilters && (
@@ -501,7 +515,6 @@ function TripResults({
   trips,
   meta,
   isSearching,
-  selectedTripId,
   onSelectTrip,
   sortMode,
   onSortModeChange,
@@ -514,37 +527,21 @@ function TripResults({
   const minTripPrice = hasTrips
     ? Math.min(...trips.map((trip) => trip.total_price))
     : 0
-  const [filters, setFilters] = useState({
-    maxPrice: maxTripPrice,
-    preferredAirline: '',
-    stopCounts: [],
-    requireCarryOnIncluded: false,
-    requireCheckedBagIncluded: false,
-  })
-  const [detailsState, setDetailsState] = useState({
-    trip: null,
-    direction: '',
-  })
+  const [filters, setFilters] = useState(() => createFilters(maxTripPrice))
+  const [details, setDetails] = useState(null)
   const [page, setPage] = useState(1)
 
-  function applyFilters(nextFilters) {
-    setFilters(nextFilters)
-    setPage(1)
-  }
-
-  function updateFilters(buildNextFilters) {
-    setFilters((currentFilters) => buildNextFilters(currentFilters))
+  function updateFilters(nextFilters) {
+    setFilters((currentFilters) => ({
+      ...currentFilters,
+      ...nextFilters,
+    }))
     setPage(1)
   }
 
   function resetFilters() {
-    applyFilters({
-      maxPrice: maxTripPrice,
-      preferredAirline: '',
-      stopCounts: [],
-      requireCarryOnIncluded: false,
-      requireCheckedBagIncluded: false,
-    })
+    setFilters(createFilters(maxTripPrice))
+    setPage(1)
   }
 
   function handleSortChange(nextSortMode) {
@@ -578,33 +575,34 @@ function TripResults({
   const airlineOptions = buildAirlineOptions(trips)
   const showStopFilters = !(stopOptions.length === 1 && stopOptions[0] === 0)
   const filteredTrips = filterTrips(trips, filters)
-  const bestTrip = pickMetricTrip(filteredTrips, 'best')
-  const cheapestTrip = pickMetricTrip(filteredTrips, 'cheapest')
-  const fastestTrip = pickMetricTrip(filteredTrips, 'fastest')
+  const metricTrips = {
+    best: pickMetricTrip(filteredTrips, 'best'),
+    cheapest: pickMetricTrip(filteredTrips, 'cheapest'),
+    fastest: pickMetricTrip(filteredTrips, 'fastest'),
+  }
   const visibleTrips = sortTrips(filteredTrips, sortMode)
-  const resultCount = meta ? meta.count : trips.length
+  const resultCount = meta?.count ?? trips.length
   const resultRoute = meta ? `${meta.from} to ${meta.to}` : 'this route'
   const totalPages = Math.max(1, Math.ceil(visibleTrips.length / pageSize))
   const currentPage = Math.min(page, totalPages)
   const pageStartIndex = (currentPage - 1) * pageSize
-  const paginatedTrips = visibleTrips.slice(pageStartIndex, pageStartIndex + pageSize)
+  const paginatedTrips = visibleTrips.slice(
+    pageStartIndex,
+    pageStartIndex + pageSize
+  )
   const pageStart = visibleTrips.length === 0 ? 0 : pageStartIndex + 1
   const pageEnd = Math.min(pageStartIndex + pageSize, visibleTrips.length)
 
   function handleStopToggle(stopCount) {
-    updateFilters((currentFilters) => {
-      if (currentFilters.stopCounts.includes(stopCount)) {
-        return {
-          ...currentFilters,
-          stopCounts: currentFilters.stopCounts.filter((value) => value !== stopCount),
-        }
-      }
-
-      return {
-        ...currentFilters,
-        stopCounts: [...currentFilters.stopCounts, stopCount].sort((left, right) => left - right),
-      }
-    })
+    setFilters((currentFilters) => ({
+      ...currentFilters,
+      stopCounts: currentFilters.stopCounts.includes(stopCount)
+        ? currentFilters.stopCounts.filter((value) => value !== stopCount)
+        : [...currentFilters.stopCounts, stopCount].sort(
+            (left, right) => left - right
+          ),
+    }))
+    setPage(1)
   }
 
   return (
@@ -617,29 +615,15 @@ function TripResults({
           filters={filters}
           stopOptions={stopOptions}
           onAirlineChange={(value) =>
-            updateFilters((currentFilters) => ({
-              ...currentFilters,
-              preferredAirline: value,
-            }))
+            updateFilters({ preferredAirline: value })
           }
-          onPriceChange={(value) =>
-            updateFilters((currentFilters) => ({
-              ...currentFilters,
-              maxPrice: value,
-            }))
-          }
+          onPriceChange={(value) => updateFilters({ maxPrice: value })}
           onStopToggle={handleStopToggle}
           onCarryOnToggle={(value) =>
-            updateFilters((currentFilters) => ({
-              ...currentFilters,
-              requireCarryOnIncluded: value,
-            }))
+            updateFilters({ requireCarryOnIncluded: value })
           }
           onCheckedBagToggle={(value) =>
-            updateFilters((currentFilters) => ({
-              ...currentFilters,
-              requireCheckedBagIncluded: value,
-            }))
+            updateFilters({ requireCheckedBagIncluded: value })
           }
           onReset={resetFilters}
           showStopFilters={showStopFilters}
@@ -649,7 +633,8 @@ function TripResults({
           <div className="results-header">
             <p>
               Found {resultCount} trip options for {resultRoute}.
-              {filteredTrips.length !== trips.length && ` Showing ${filteredTrips.length} after filters.`}
+              {filteredTrips.length !== trips.length &&
+                ` Showing ${filteredTrips.length} after filters.`}
             </p>
 
             <ResultToolbar
@@ -660,29 +645,21 @@ function TripResults({
           </div>
 
           <div className="results-metrics">
-            <SummaryMetric
-              label="Best"
-              trip={bestTrip}
-              active={sortMode === 'best'}
-              onClick={() => handleSortChange('best')}
-            />
-            <SummaryMetric
-              label="Cheapest"
-              trip={cheapestTrip}
-              active={sortMode === 'cheapest'}
-              onClick={() => handleSortChange('cheapest')}
-            />
-            <SummaryMetric
-              label="Fastest"
-              trip={fastestTrip}
-              active={sortMode === 'fastest'}
-              onClick={() => handleSortChange('fastest')}
-            />
+            {metricOptions.map(([mode, label]) => (
+              <SummaryMetric
+                key={mode}
+                label={label}
+                trip={metricTrips[mode]}
+                active={sortMode === mode}
+                onClick={() => handleSortChange(mode)}
+              />
+            ))}
           </div>
 
           {visibleTrips.length === 0 ? (
             <div className="results-empty">
-              No trips fit the current filters. Raise the price cap or loosen the stop or baggage rules.
+              No trips fit the current filters. Raise the price cap or loosen
+              the stop or baggage rules.
             </div>
           ) : (
             <>
@@ -691,13 +668,9 @@ function TripResults({
                   <TripCard
                     key={trip.id}
                     trip={trip}
-                    selected={selectedTripId === trip.id}
                     onSelect={() => onSelectTrip(trip.id)}
                     onOpenDetails={(selectedTrip, direction) =>
-                      setDetailsState({
-                        trip: selectedTrip,
-                        direction,
-                      })
+                      setDetails({ trip: selectedTrip, direction })
                     }
                   />
                 ))}
@@ -711,16 +684,11 @@ function TripResults({
                 />
               )}
 
-              {detailsState.trip && (
+              {details && (
                 <TripDetailsModal
-                  trip={detailsState.trip}
-                  highlightedDirection={detailsState.direction}
-                  onClose={() =>
-                    setDetailsState({
-                      trip: null,
-                      direction: '',
-                    })
-                  }
+                  trip={details.trip}
+                  highlightedDirection={details.direction}
+                  onClose={() => setDetails(null)}
                 />
               )}
             </>

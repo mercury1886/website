@@ -1,6 +1,19 @@
+FROM composer:2 AS composer
+
 FROM php:8.3-cli-alpine
 
+RUN apk add --no-cache $PHPIZE_DEPS libxml2-dev oniguruma-dev \
+ && docker-php-ext-install mbstring xml \
+ && apk del $PHPIZE_DEPS
+
+COPY --from=composer /usr/bin/composer /usr/local/bin/composer
+COPY api/docker-entrypoint.sh /usr/local/bin/api-entrypoint
+
+RUN chmod +x /usr/local/bin/api-entrypoint
+
 WORKDIR /app/api
+
+ENTRYPOINT ["api-entrypoint"]
 
 EXPOSE 8000
 

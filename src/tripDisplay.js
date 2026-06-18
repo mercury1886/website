@@ -1,3 +1,10 @@
+const tripSorters = {
+  best: (left, right) => left.score - right.score,
+  cheapest: (left, right) => left.total_price - right.total_price,
+  fastest: (left, right) =>
+    left.total_duration_minutes - right.total_duration_minutes,
+}
+
 export function formatCurrency(value) {
   return new Intl.NumberFormat('en-CA', {
     style: 'currency',
@@ -7,21 +14,8 @@ export function formatCurrency(value) {
 }
 
 export function sortTrips(trips, sortMode) {
-  const sortedTrips = [...trips]
-
-  sortedTrips.sort((left, right) => {
-    if (sortMode === 'cheapest') {
-      return left.total_price - right.total_price
-    }
-
-    if (sortMode === 'fastest') {
-      return left.total_duration_minutes - right.total_duration_minutes
-    }
-
-    return left.score - right.score
-  })
-
-  return sortedTrips
+  const sorter = tripSorters[sortMode] || tripSorters.best
+  return [...trips].sort(sorter)
 }
 
 export function pickMetricTrip(trips, sortMode) {
@@ -38,21 +32,25 @@ export function stopCountLabel(stopCount) {
 }
 
 export function buildStopOptions(trips) {
-  return [...new Set(trips.map((trip) => trip.stop_count))].sort((left, right) => left - right)
+  return [...new Set(trips.map((trip) => trip.stop_count))].sort(
+    (left, right) => left - right
+  )
 }
 
 export function buildAirlineOptions(trips) {
-  const airlineMap = {}
+  const airlineMap = new Map()
 
-  trips.forEach((trip) => {
-    trip.segments.forEach((segment) => {
-      segment.carriers.forEach((carrier) => {
-        airlineMap[carrier.code] = carrier
-      })
-    })
-  })
+  for (const trip of trips) {
+    for (const segment of trip.segments) {
+      for (const carrier of segment.carriers) {
+        airlineMap.set(carrier.code, carrier)
+      }
+    }
+  }
 
-  return Object.values(airlineMap).sort((left, right) => left.code.localeCompare(right.code))
+  return [...airlineMap.values()].sort((left, right) =>
+    left.name.localeCompare(right.name)
+  )
 }
 
 export function filterTrips(trips, filters) {
@@ -64,26 +62,31 @@ export function filterTrips(trips, filters) {
     if (
       filters.preferredAirline &&
       !trip.segments.every((segment) =>
-        segment.legs.every((leg) => leg.airline_code === filters.preferredAirline),
+        segment.legs.every(
+          (leg) => leg.airline_code === filters.preferredAirline
+        )
       )
     ) {
       return false
     }
 
-    if (filters.stopCounts.length > 0 && !filters.stopCounts.includes(trip.stop_count)) {
+    if (
+      filters.stopCounts.length > 0 &&
+      !filters.stopCounts.includes(trip.stop_count)
+    ) {
       return false
     }
 
     if (
       filters.requireCarryOnIncluded &&
-      !trip.segments.every((segment) => segment.baggage_summary?.carry_on?.status === 'included')
+      !trip.segments.every((segment) => segment.baggage_summary.carry_on > 0)
     ) {
       return false
     }
 
     if (
       filters.requireCheckedBagIncluded &&
-      !trip.segments.every((segment) => segment.baggage_summary?.checked_bag?.status === 'included')
+      !trip.segments.every((segment) => segment.baggage_summary.checked_bag > 0)
     ) {
       return false
     }
