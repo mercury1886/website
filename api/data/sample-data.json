@@ -1,0 +1,3545 @@
+{
+  "airlines": [
+    {
+      "code": "AC",
+      "name": "Air Canada",
+      "logo": "/airlines/ac.png"
+    },
+    {
+      "code": "WS",
+      "name": "WestJet",
+      "logo": "/airlines/ws.png"
+    },
+    {
+      "code": "DL",
+      "name": "Delta Air Lines",
+      "logo": "/airlines/dl.png"
+    },
+    {
+      "code": "UA",
+      "name": "United Airlines",
+      "logo": "/airlines/ua.png"
+    },
+    {
+      "code": "AA",
+      "name": "American Airlines",
+      "logo": "/airlines/aa.png"
+    }
+  ],
+  "aircraft": [
+    {
+      "code": "AC-220",
+      "model": "Airbus A220-300"
+    },
+    {
+      "code": "AC-321",
+      "model": "Airbus A321"
+    },
+    {
+      "code": "WS-7M8",
+      "model": "737 MAX 8"
+    },
+    {
+      "code": "WS-73W",
+      "model": "737-700"
+    },
+    {
+      "code": "DL-321",
+      "model": "Airbus A321neo"
+    },
+    {
+      "code": "DL-220",
+      "model": "Airbus A220-100"
+    },
+    {
+      "code": "UA-7M9",
+      "model": "737 MAX 9"
+    },
+    {
+      "code": "UA-738",
+      "model": "737-800"
+    },
+    {
+      "code": "AA-321",
+      "model": "Airbus A321"
+    },
+    {
+      "code": "AA-738",
+      "model": "737-800"
+    }
+  ],
+  "airports": [
+    {
+      "code": "YUL",
+      "city_code": "YMQ",
+      "name": "Pierre Elliott Trudeau International",
+      "city": "Montreal",
+      "country_code": "CA",
+      "region_code": "QC",
+      "latitude": 45.457714,
+      "longitude": -73.749908,
+      "timezone": "America/Montreal"
+    },
+    {
+      "code": "YVR",
+      "city_code": "YVR",
+      "name": "Vancouver International",
+      "city": "Vancouver",
+      "country_code": "CA",
+      "region_code": "BC",
+      "latitude": 49.194698,
+      "longitude": -123.179192,
+      "timezone": "America/Vancouver"
+    },
+    {
+      "code": "YYZ",
+      "city_code": "YTO",
+      "name": "Toronto Pearson International",
+      "city": "Toronto",
+      "country_code": "CA",
+      "region_code": "ON",
+      "latitude": 43.677717,
+      "longitude": -79.624819,
+      "timezone": "America/Toronto"
+    },
+    {
+      "code": "YYC",
+      "city_code": "YYC",
+      "name": "Calgary International",
+      "city": "Calgary",
+      "country_code": "CA",
+      "region_code": "AB",
+      "latitude": 51.131457,
+      "longitude": -114.010278,
+      "timezone": "America/Edmonton"
+    },
+    {
+      "code": "JFK",
+      "city_code": "NYC",
+      "name": "John F. Kennedy International",
+      "city": "New York",
+      "country_code": "US",
+      "region_code": "NY",
+      "latitude": 40.641311,
+      "longitude": -73.778139,
+      "timezone": "America/New_York"
+    },
+    {
+      "code": "LAX",
+      "city_code": "LAX",
+      "name": "Los Angeles International",
+      "city": "Los Angeles",
+      "country_code": "US",
+      "region_code": "CA",
+      "latitude": 33.941589,
+      "longitude": -118.40853,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "code": "ORD",
+      "city_code": "CHI",
+      "name": "O'Hare International",
+      "city": "Chicago",
+      "country_code": "US",
+      "region_code": "IL",
+      "latitude": 41.974163,
+      "longitude": -87.907321,
+      "timezone": "America/Chicago"
+    },
+    {
+      "code": "MIA",
+      "city_code": "MIA",
+      "name": "Miami International",
+      "city": "Miami",
+      "country_code": "US",
+      "region_code": "FL",
+      "latitude": 25.795865,
+      "longitude": -80.287045,
+      "timezone": "America/New_York"
+    },
+    {
+      "code": "SEA",
+      "city_code": "SEA",
+      "name": "Seattle-Tacoma International",
+      "city": "Seattle",
+      "country_code": "US",
+      "region_code": "WA",
+      "latitude": 47.450249,
+      "longitude": -122.308817,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "code": "BOS",
+      "city_code": "BOS",
+      "name": "Logan International",
+      "city": "Boston",
+      "country_code": "US",
+      "region_code": "MA",
+      "latitude": 42.365613,
+      "longitude": -71.00956,
+      "timezone": "America/New_York"
+    }
+  ],
+  "flights": [
+    {
+      "airline": "AC",
+      "number": "200",
+      "departure_airport": "YUL",
+      "departure_time": "06:00",
+      "arrival_airport": "YYZ",
+      "arrival_time": "07:25",
+      "price": "106.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "201",
+      "departure_airport": "YUL",
+      "departure_time": "07:30",
+      "arrival_airport": "YYZ",
+      "arrival_time": "09:07",
+      "price": "124.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "202",
+      "departure_airport": "YUL",
+      "departure_time": "09:45",
+      "arrival_airport": "YYZ",
+      "arrival_time": "11:34",
+      "price": "142.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "203",
+      "departure_airport": "YUL",
+      "departure_time": "12:15",
+      "arrival_airport": "YYZ",
+      "arrival_time": "13:40",
+      "price": "160.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "204",
+      "departure_airport": "YUL",
+      "departure_time": "15:00",
+      "arrival_airport": "YYZ",
+      "arrival_time": "16:37",
+      "price": "178.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "205",
+      "departure_airport": "YUL",
+      "departure_time": "18:30",
+      "arrival_airport": "YYZ",
+      "arrival_time": "20:19",
+      "price": "196.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "206",
+      "departure_airport": "YYZ",
+      "departure_time": "06:35",
+      "arrival_airport": "YUL",
+      "arrival_time": "08:35",
+      "price": "109.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "207",
+      "departure_airport": "YYZ",
+      "departure_time": "08:05",
+      "arrival_airport": "YUL",
+      "arrival_time": "10:17",
+      "price": "127.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "208",
+      "departure_airport": "YYZ",
+      "departure_time": "10:20",
+      "arrival_airport": "YUL",
+      "arrival_time": "12:44",
+      "price": "145.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "209",
+      "departure_airport": "YYZ",
+      "departure_time": "12:50",
+      "arrival_airport": "YUL",
+      "arrival_time": "14:50",
+      "price": "163.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "210",
+      "departure_airport": "YYZ",
+      "departure_time": "15:35",
+      "arrival_airport": "YUL",
+      "arrival_time": "17:47",
+      "price": "181.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "211",
+      "departure_airport": "YYZ",
+      "departure_time": "19:05",
+      "arrival_airport": "YUL",
+      "arrival_time": "21:29",
+      "price": "199.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "212",
+      "departure_airport": "YUL",
+      "departure_time": "06:03",
+      "arrival_airport": "YVR",
+      "arrival_time": "11:33",
+      "price": "279.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "213",
+      "departure_airport": "YUL",
+      "departure_time": "07:33",
+      "arrival_airport": "YVR",
+      "arrival_time": "13:15",
+      "price": "297.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "214",
+      "departure_airport": "YUL",
+      "departure_time": "09:48",
+      "arrival_airport": "YVR",
+      "arrival_time": "15:42",
+      "price": "315.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "215",
+      "departure_airport": "YUL",
+      "departure_time": "12:18",
+      "arrival_airport": "YVR",
+      "arrival_time": "17:48",
+      "price": "333.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "216",
+      "departure_airport": "YUL",
+      "departure_time": "15:03",
+      "arrival_airport": "YVR",
+      "arrival_time": "20:45",
+      "price": "351.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "217",
+      "departure_airport": "YUL",
+      "departure_time": "18:33",
+      "arrival_airport": "YVR",
+      "arrival_time": "00:27",
+      "price": "369.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "218",
+      "departure_airport": "YVR",
+      "departure_time": "06:38",
+      "arrival_airport": "YUL",
+      "arrival_time": "12:43",
+      "price": "282.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "219",
+      "departure_airport": "YVR",
+      "departure_time": "08:08",
+      "arrival_airport": "YUL",
+      "arrival_time": "14:25",
+      "price": "300.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "220",
+      "departure_airport": "YVR",
+      "departure_time": "10:23",
+      "arrival_airport": "YUL",
+      "arrival_time": "16:52",
+      "price": "318.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "221",
+      "departure_airport": "YVR",
+      "departure_time": "12:53",
+      "arrival_airport": "YUL",
+      "arrival_time": "18:58",
+      "price": "336.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "222",
+      "departure_airport": "YVR",
+      "departure_time": "15:38",
+      "arrival_airport": "YUL",
+      "arrival_time": "21:55",
+      "price": "354.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "223",
+      "departure_airport": "YVR",
+      "departure_time": "19:08",
+      "arrival_airport": "YUL",
+      "arrival_time": "01:37",
+      "price": "372.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "224",
+      "departure_airport": "YUL",
+      "departure_time": "06:06",
+      "arrival_airport": "JFK",
+      "arrival_time": "07:41",
+      "price": "166.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "225",
+      "departure_airport": "YUL",
+      "departure_time": "07:36",
+      "arrival_airport": "JFK",
+      "arrival_time": "09:23",
+      "price": "184.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "226",
+      "departure_airport": "YUL",
+      "departure_time": "09:51",
+      "arrival_airport": "JFK",
+      "arrival_time": "11:50",
+      "price": "202.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "227",
+      "departure_airport": "YUL",
+      "departure_time": "12:21",
+      "arrival_airport": "JFK",
+      "arrival_time": "13:56",
+      "price": "220.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "228",
+      "departure_airport": "YUL",
+      "departure_time": "15:06",
+      "arrival_airport": "JFK",
+      "arrival_time": "16:53",
+      "price": "238.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "229",
+      "departure_airport": "YUL",
+      "departure_time": "18:36",
+      "arrival_airport": "JFK",
+      "arrival_time": "20:35",
+      "price": "256.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "230",
+      "departure_airport": "JFK",
+      "departure_time": "06:41",
+      "arrival_airport": "YUL",
+      "arrival_time": "08:51",
+      "price": "169.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "231",
+      "departure_airport": "JFK",
+      "departure_time": "08:11",
+      "arrival_airport": "YUL",
+      "arrival_time": "10:33",
+      "price": "187.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "232",
+      "departure_airport": "JFK",
+      "departure_time": "10:26",
+      "arrival_airport": "YUL",
+      "arrival_time": "13:00",
+      "price": "205.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "233",
+      "departure_airport": "JFK",
+      "departure_time": "12:56",
+      "arrival_airport": "YUL",
+      "arrival_time": "15:06",
+      "price": "223.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "234",
+      "departure_airport": "JFK",
+      "departure_time": "15:41",
+      "arrival_airport": "YUL",
+      "arrival_time": "18:03",
+      "price": "241.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "235",
+      "departure_airport": "JFK",
+      "departure_time": "19:11",
+      "arrival_airport": "YUL",
+      "arrival_time": "21:45",
+      "price": "259.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "236",
+      "departure_airport": "YUL",
+      "departure_time": "06:09",
+      "arrival_airport": "BOS",
+      "arrival_time": "07:29",
+      "price": "134.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "237",
+      "departure_airport": "YUL",
+      "departure_time": "07:39",
+      "arrival_airport": "BOS",
+      "arrival_time": "09:11",
+      "price": "152.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "238",
+      "departure_airport": "YUL",
+      "departure_time": "09:54",
+      "arrival_airport": "BOS",
+      "arrival_time": "11:38",
+      "price": "170.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "239",
+      "departure_airport": "YUL",
+      "departure_time": "12:24",
+      "arrival_airport": "BOS",
+      "arrival_time": "13:44",
+      "price": "188.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "240",
+      "departure_airport": "YUL",
+      "departure_time": "15:09",
+      "arrival_airport": "BOS",
+      "arrival_time": "16:41",
+      "price": "206.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "241",
+      "departure_airport": "YUL",
+      "departure_time": "18:39",
+      "arrival_airport": "BOS",
+      "arrival_time": "20:23",
+      "price": "224.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "242",
+      "departure_airport": "BOS",
+      "departure_time": "06:44",
+      "arrival_airport": "YUL",
+      "arrival_time": "08:39",
+      "price": "137.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "243",
+      "departure_airport": "BOS",
+      "departure_time": "08:14",
+      "arrival_airport": "YUL",
+      "arrival_time": "10:21",
+      "price": "155.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "244",
+      "departure_airport": "BOS",
+      "departure_time": "10:29",
+      "arrival_airport": "YUL",
+      "arrival_time": "12:48",
+      "price": "173.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "245",
+      "departure_airport": "BOS",
+      "departure_time": "12:59",
+      "arrival_airport": "YUL",
+      "arrival_time": "14:54",
+      "price": "191.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "246",
+      "departure_airport": "BOS",
+      "departure_time": "15:44",
+      "arrival_airport": "YUL",
+      "arrival_time": "17:51",
+      "price": "209.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "247",
+      "departure_airport": "BOS",
+      "departure_time": "19:14",
+      "arrival_airport": "YUL",
+      "arrival_time": "21:33",
+      "price": "227.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "248",
+      "departure_airport": "YYZ",
+      "departure_time": "06:12",
+      "arrival_airport": "YVR",
+      "arrival_time": "11:17",
+      "price": "260.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "249",
+      "departure_airport": "YYZ",
+      "departure_time": "07:42",
+      "arrival_airport": "YVR",
+      "arrival_time": "12:59",
+      "price": "278.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "250",
+      "departure_airport": "YYZ",
+      "departure_time": "09:57",
+      "arrival_airport": "YVR",
+      "arrival_time": "15:26",
+      "price": "296.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "251",
+      "departure_airport": "YYZ",
+      "departure_time": "12:27",
+      "arrival_airport": "YVR",
+      "arrival_time": "17:32",
+      "price": "314.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "252",
+      "departure_airport": "YYZ",
+      "departure_time": "15:12",
+      "arrival_airport": "YVR",
+      "arrival_time": "20:29",
+      "price": "332.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "253",
+      "departure_airport": "YYZ",
+      "departure_time": "18:42",
+      "arrival_airport": "YVR",
+      "arrival_time": "00:11",
+      "price": "350.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "254",
+      "departure_airport": "YVR",
+      "departure_time": "06:47",
+      "arrival_airport": "YYZ",
+      "arrival_time": "12:27",
+      "price": "263.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "255",
+      "departure_airport": "YVR",
+      "departure_time": "08:17",
+      "arrival_airport": "YYZ",
+      "arrival_time": "14:09",
+      "price": "281.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "256",
+      "departure_airport": "YVR",
+      "departure_time": "10:32",
+      "arrival_airport": "YYZ",
+      "arrival_time": "16:36",
+      "price": "299.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "257",
+      "departure_airport": "YVR",
+      "departure_time": "13:02",
+      "arrival_airport": "YYZ",
+      "arrival_time": "18:42",
+      "price": "317.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "258",
+      "departure_airport": "YVR",
+      "departure_time": "15:47",
+      "arrival_airport": "YYZ",
+      "arrival_time": "21:39",
+      "price": "335.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "259",
+      "departure_airport": "YVR",
+      "departure_time": "19:17",
+      "arrival_airport": "YYZ",
+      "arrival_time": "01:21",
+      "price": "353.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "260",
+      "departure_airport": "YYZ",
+      "departure_time": "06:15",
+      "arrival_airport": "YYC",
+      "arrival_time": "10:10",
+      "price": "195.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "261",
+      "departure_airport": "YYZ",
+      "departure_time": "07:45",
+      "arrival_airport": "YYC",
+      "arrival_time": "11:52",
+      "price": "213.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "262",
+      "departure_airport": "YYZ",
+      "departure_time": "10:00",
+      "arrival_airport": "YYC",
+      "arrival_time": "14:19",
+      "price": "231.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "263",
+      "departure_airport": "YYZ",
+      "departure_time": "12:30",
+      "arrival_airport": "YYC",
+      "arrival_time": "16:25",
+      "price": "249.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "264",
+      "departure_airport": "YYZ",
+      "departure_time": "15:15",
+      "arrival_airport": "YYC",
+      "arrival_time": "19:22",
+      "price": "267.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "265",
+      "departure_airport": "YYZ",
+      "departure_time": "18:45",
+      "arrival_airport": "YYC",
+      "arrival_time": "23:04",
+      "price": "285.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "266",
+      "departure_airport": "YYC",
+      "departure_time": "06:50",
+      "arrival_airport": "YYZ",
+      "arrival_time": "11:20",
+      "price": "198.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "267",
+      "departure_airport": "YYC",
+      "departure_time": "08:20",
+      "arrival_airport": "YYZ",
+      "arrival_time": "13:02",
+      "price": "216.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "268",
+      "departure_airport": "YYC",
+      "departure_time": "10:35",
+      "arrival_airport": "YYZ",
+      "arrival_time": "15:29",
+      "price": "234.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "269",
+      "departure_airport": "YYC",
+      "departure_time": "13:05",
+      "arrival_airport": "YYZ",
+      "arrival_time": "17:35",
+      "price": "252.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "270",
+      "departure_airport": "YYC",
+      "departure_time": "15:50",
+      "arrival_airport": "YYZ",
+      "arrival_time": "20:32",
+      "price": "270.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "271",
+      "departure_airport": "YYC",
+      "departure_time": "19:20",
+      "arrival_airport": "YYZ",
+      "arrival_time": "00:14",
+      "price": "288.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "272",
+      "departure_airport": "YYZ",
+      "departure_time": "06:18",
+      "arrival_airport": "JFK",
+      "arrival_time": "08:03",
+      "price": "150.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "273",
+      "departure_airport": "YYZ",
+      "departure_time": "07:48",
+      "arrival_airport": "JFK",
+      "arrival_time": "09:45",
+      "price": "168.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "274",
+      "departure_airport": "YYZ",
+      "departure_time": "10:03",
+      "arrival_airport": "JFK",
+      "arrival_time": "12:12",
+      "price": "186.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "275",
+      "departure_airport": "YYZ",
+      "departure_time": "12:33",
+      "arrival_airport": "JFK",
+      "arrival_time": "14:18",
+      "price": "204.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "276",
+      "departure_airport": "YYZ",
+      "departure_time": "15:18",
+      "arrival_airport": "JFK",
+      "arrival_time": "17:15",
+      "price": "222.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "277",
+      "departure_airport": "YYZ",
+      "departure_time": "18:48",
+      "arrival_airport": "JFK",
+      "arrival_time": "20:57",
+      "price": "240.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AC",
+      "number": "278",
+      "departure_airport": "JFK",
+      "departure_time": "06:53",
+      "arrival_airport": "YYZ",
+      "arrival_time": "09:13",
+      "price": "153.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "279",
+      "departure_airport": "JFK",
+      "departure_time": "08:23",
+      "arrival_airport": "YYZ",
+      "arrival_time": "10:55",
+      "price": "171.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "280",
+      "departure_airport": "JFK",
+      "departure_time": "10:38",
+      "arrival_airport": "YYZ",
+      "arrival_time": "13:22",
+      "price": "189.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "281",
+      "departure_airport": "JFK",
+      "departure_time": "13:08",
+      "arrival_airport": "YYZ",
+      "arrival_time": "15:28",
+      "price": "207.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AC",
+      "number": "282",
+      "departure_airport": "JFK",
+      "departure_time": "15:53",
+      "arrival_airport": "YYZ",
+      "arrival_time": "18:25",
+      "price": "225.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "DL",
+      "number": "283",
+      "departure_airport": "JFK",
+      "departure_time": "19:23",
+      "arrival_airport": "YYZ",
+      "arrival_time": "22:07",
+      "price": "243.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "UA",
+      "number": "284",
+      "departure_airport": "YYZ",
+      "departure_time": "06:21",
+      "arrival_airport": "ORD",
+      "arrival_time": "08:11",
+      "price": "149.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "AA",
+      "number": "285",
+      "departure_airport": "YYZ",
+      "departure_time": "07:51",
+      "arrival_airport": "ORD",
+      "arrival_time": "09:53",
+      "price": "167.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "UA",
+      "number": "286",
+      "departure_airport": "YYZ",
+      "departure_time": "10:06",
+      "arrival_airport": "ORD",
+      "arrival_time": "12:20",
+      "price": "185.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "AA",
+      "number": "287",
+      "departure_airport": "YYZ",
+      "departure_time": "12:36",
+      "arrival_airport": "ORD",
+      "arrival_time": "14:26",
+      "price": "203.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "UA",
+      "number": "288",
+      "departure_airport": "YYZ",
+      "departure_time": "15:21",
+      "arrival_airport": "ORD",
+      "arrival_time": "17:23",
+      "price": "221.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "AA",
+      "number": "289",
+      "departure_airport": "YYZ",
+      "departure_time": "18:51",
+      "arrival_airport": "ORD",
+      "arrival_time": "21:05",
+      "price": "239.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "UA",
+      "number": "290",
+      "departure_airport": "ORD",
+      "departure_time": "06:56",
+      "arrival_airport": "YYZ",
+      "arrival_time": "09:21",
+      "price": "152.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "AA",
+      "number": "291",
+      "departure_airport": "ORD",
+      "departure_time": "08:26",
+      "arrival_airport": "YYZ",
+      "arrival_time": "11:03",
+      "price": "170.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "UA",
+      "number": "292",
+      "departure_airport": "ORD",
+      "departure_time": "10:41",
+      "arrival_airport": "YYZ",
+      "arrival_time": "13:30",
+      "price": "188.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "AA",
+      "number": "293",
+      "departure_airport": "ORD",
+      "departure_time": "13:11",
+      "arrival_airport": "YYZ",
+      "arrival_time": "15:36",
+      "price": "206.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "UA",
+      "number": "294",
+      "departure_airport": "ORD",
+      "departure_time": "15:56",
+      "arrival_airport": "YYZ",
+      "arrival_time": "18:33",
+      "price": "224.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "AA",
+      "number": "295",
+      "departure_airport": "ORD",
+      "departure_time": "19:26",
+      "arrival_airport": "YYZ",
+      "arrival_time": "22:15",
+      "price": "242.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "296",
+      "departure_airport": "YVR",
+      "departure_time": "06:24",
+      "arrival_airport": "SEA",
+      "arrival_time": "07:19",
+      "price": "85.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "UA",
+      "number": "297",
+      "departure_airport": "YVR",
+      "departure_time": "07:54",
+      "arrival_airport": "SEA",
+      "arrival_time": "09:01",
+      "price": "103.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "298",
+      "departure_airport": "YVR",
+      "departure_time": "10:09",
+      "arrival_airport": "SEA",
+      "arrival_time": "11:28",
+      "price": "121.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "UA",
+      "number": "299",
+      "departure_airport": "YVR",
+      "departure_time": "12:39",
+      "arrival_airport": "SEA",
+      "arrival_time": "13:34",
+      "price": "139.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "300",
+      "departure_airport": "YVR",
+      "departure_time": "15:24",
+      "arrival_airport": "SEA",
+      "arrival_time": "16:31",
+      "price": "157.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "UA",
+      "number": "301",
+      "departure_airport": "YVR",
+      "departure_time": "18:54",
+      "arrival_airport": "SEA",
+      "arrival_time": "20:13",
+      "price": "175.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "302",
+      "departure_airport": "SEA",
+      "departure_time": "06:59",
+      "arrival_airport": "YVR",
+      "arrival_time": "08:29",
+      "price": "88.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "UA",
+      "number": "303",
+      "departure_airport": "SEA",
+      "departure_time": "08:29",
+      "arrival_airport": "YVR",
+      "arrival_time": "10:11",
+      "price": "106.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "DL",
+      "number": "304",
+      "departure_airport": "SEA",
+      "departure_time": "10:44",
+      "arrival_airport": "YVR",
+      "arrival_time": "12:38",
+      "price": "124.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "UA",
+      "number": "305",
+      "departure_airport": "SEA",
+      "departure_time": "13:14",
+      "arrival_airport": "YVR",
+      "arrival_time": "14:44",
+      "price": "142.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "DL",
+      "number": "306",
+      "departure_airport": "SEA",
+      "departure_time": "15:59",
+      "arrival_airport": "YVR",
+      "arrival_time": "17:41",
+      "price": "160.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "UA",
+      "number": "307",
+      "departure_airport": "SEA",
+      "departure_time": "19:29",
+      "arrival_airport": "YVR",
+      "arrival_time": "21:23",
+      "price": "178.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "WS",
+      "number": "308",
+      "departure_airport": "YVR",
+      "departure_time": "06:27",
+      "arrival_airport": "LAX",
+      "arrival_time": "09:22",
+      "price": "182.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "UA",
+      "number": "309",
+      "departure_airport": "YVR",
+      "departure_time": "07:57",
+      "arrival_airport": "LAX",
+      "arrival_time": "11:04",
+      "price": "200.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "WS",
+      "number": "310",
+      "departure_airport": "YVR",
+      "departure_time": "10:12",
+      "arrival_airport": "LAX",
+      "arrival_time": "13:31",
+      "price": "218.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "UA",
+      "number": "311",
+      "departure_airport": "YVR",
+      "departure_time": "12:42",
+      "arrival_airport": "LAX",
+      "arrival_time": "15:37",
+      "price": "236.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "WS",
+      "number": "312",
+      "departure_airport": "YVR",
+      "departure_time": "15:27",
+      "arrival_airport": "LAX",
+      "arrival_time": "18:34",
+      "price": "254.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "UA",
+      "number": "313",
+      "departure_airport": "YVR",
+      "departure_time": "18:57",
+      "arrival_airport": "LAX",
+      "arrival_time": "22:16",
+      "price": "272.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "WS",
+      "number": "314",
+      "departure_airport": "LAX",
+      "departure_time": "07:02",
+      "arrival_airport": "YVR",
+      "arrival_time": "10:32",
+      "price": "185.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "UA",
+      "number": "315",
+      "departure_airport": "LAX",
+      "departure_time": "08:32",
+      "arrival_airport": "YVR",
+      "arrival_time": "12:14",
+      "price": "203.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "WS",
+      "number": "316",
+      "departure_airport": "LAX",
+      "departure_time": "10:47",
+      "arrival_airport": "YVR",
+      "arrival_time": "14:41",
+      "price": "221.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "UA",
+      "number": "317",
+      "departure_airport": "LAX",
+      "departure_time": "13:17",
+      "arrival_airport": "YVR",
+      "arrival_time": "16:47",
+      "price": "239.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "WS",
+      "number": "318",
+      "departure_airport": "LAX",
+      "departure_time": "16:02",
+      "arrival_airport": "YVR",
+      "arrival_time": "19:44",
+      "price": "257.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "UA",
+      "number": "319",
+      "departure_airport": "LAX",
+      "departure_time": "19:32",
+      "arrival_airport": "YVR",
+      "arrival_time": "23:26",
+      "price": "275.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "WS",
+      "number": "320",
+      "departure_airport": "YYC",
+      "departure_time": "06:30",
+      "arrival_airport": "YVR",
+      "arrival_time": "08:00",
+      "price": "115.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "321",
+      "departure_airport": "YYC",
+      "departure_time": "08:00",
+      "arrival_airport": "YVR",
+      "arrival_time": "09:42",
+      "price": "133.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "322",
+      "departure_airport": "YYC",
+      "departure_time": "10:15",
+      "arrival_airport": "YVR",
+      "arrival_time": "12:09",
+      "price": "151.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "323",
+      "departure_airport": "YYC",
+      "departure_time": "12:45",
+      "arrival_airport": "YVR",
+      "arrival_time": "14:15",
+      "price": "169.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "324",
+      "departure_airport": "YYC",
+      "departure_time": "15:30",
+      "arrival_airport": "YVR",
+      "arrival_time": "17:12",
+      "price": "187.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-7M8"
+    },
+    {
+      "airline": "AC",
+      "number": "325",
+      "departure_airport": "YYC",
+      "departure_time": "19:00",
+      "arrival_airport": "YVR",
+      "arrival_time": "20:54",
+      "price": "205.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AC-321"
+    },
+    {
+      "airline": "WS",
+      "number": "326",
+      "departure_airport": "YVR",
+      "departure_time": "07:05",
+      "arrival_airport": "YYC",
+      "arrival_time": "09:10",
+      "price": "118.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "327",
+      "departure_airport": "YVR",
+      "departure_time": "08:35",
+      "arrival_airport": "YYC",
+      "arrival_time": "10:52",
+      "price": "136.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "328",
+      "departure_airport": "YVR",
+      "departure_time": "10:50",
+      "arrival_airport": "YYC",
+      "arrival_time": "13:19",
+      "price": "154.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "329",
+      "departure_airport": "YVR",
+      "departure_time": "13:20",
+      "arrival_airport": "YYC",
+      "arrival_time": "15:25",
+      "price": "172.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "WS",
+      "number": "330",
+      "departure_airport": "YVR",
+      "departure_time": "16:05",
+      "arrival_airport": "YYC",
+      "arrival_time": "18:22",
+      "price": "190.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "WS-73W"
+    },
+    {
+      "airline": "AC",
+      "number": "331",
+      "departure_airport": "YVR",
+      "departure_time": "19:35",
+      "arrival_airport": "YYC",
+      "arrival_time": "22:04",
+      "price": "208.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AC-220"
+    },
+    {
+      "airline": "DL",
+      "number": "332",
+      "departure_airport": "JFK",
+      "departure_time": "06:33",
+      "arrival_airport": "MIA",
+      "arrival_time": "09:43",
+      "price": "186.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AA",
+      "number": "333",
+      "departure_airport": "JFK",
+      "departure_time": "08:03",
+      "arrival_airport": "MIA",
+      "arrival_time": "11:25",
+      "price": "204.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "334",
+      "departure_airport": "JFK",
+      "departure_time": "10:18",
+      "arrival_airport": "MIA",
+      "arrival_time": "13:52",
+      "price": "222.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AA",
+      "number": "335",
+      "departure_airport": "JFK",
+      "departure_time": "12:48",
+      "arrival_airport": "MIA",
+      "arrival_time": "15:58",
+      "price": "240.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "336",
+      "departure_airport": "JFK",
+      "departure_time": "15:33",
+      "arrival_airport": "MIA",
+      "arrival_time": "18:55",
+      "price": "258.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AA",
+      "number": "337",
+      "departure_airport": "JFK",
+      "departure_time": "19:03",
+      "arrival_airport": "MIA",
+      "arrival_time": "22:37",
+      "price": "276.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "338",
+      "departure_airport": "MIA",
+      "departure_time": "07:08",
+      "arrival_airport": "JFK",
+      "arrival_time": "10:53",
+      "price": "189.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AA",
+      "number": "339",
+      "departure_airport": "MIA",
+      "departure_time": "08:38",
+      "arrival_airport": "JFK",
+      "arrival_time": "12:35",
+      "price": "207.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "340",
+      "departure_airport": "MIA",
+      "departure_time": "10:53",
+      "arrival_airport": "JFK",
+      "arrival_time": "15:02",
+      "price": "225.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AA",
+      "number": "341",
+      "departure_airport": "MIA",
+      "departure_time": "13:23",
+      "arrival_airport": "JFK",
+      "arrival_time": "17:08",
+      "price": "243.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "342",
+      "departure_airport": "MIA",
+      "departure_time": "16:08",
+      "arrival_airport": "JFK",
+      "arrival_time": "20:05",
+      "price": "261.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AA",
+      "number": "343",
+      "departure_airport": "MIA",
+      "departure_time": "19:38",
+      "arrival_airport": "JFK",
+      "arrival_time": "23:47",
+      "price": "279.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "UA",
+      "number": "344",
+      "departure_airport": "ORD",
+      "departure_time": "06:36",
+      "arrival_airport": "LAX",
+      "arrival_time": "11:01",
+      "price": "205.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "AA",
+      "number": "345",
+      "departure_airport": "ORD",
+      "departure_time": "08:06",
+      "arrival_airport": "LAX",
+      "arrival_time": "12:43",
+      "price": "223.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "UA",
+      "number": "346",
+      "departure_airport": "ORD",
+      "departure_time": "10:21",
+      "arrival_airport": "LAX",
+      "arrival_time": "15:10",
+      "price": "241.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "AA",
+      "number": "347",
+      "departure_airport": "ORD",
+      "departure_time": "12:51",
+      "arrival_airport": "LAX",
+      "arrival_time": "17:16",
+      "price": "259.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "UA",
+      "number": "348",
+      "departure_airport": "ORD",
+      "departure_time": "15:36",
+      "arrival_airport": "LAX",
+      "arrival_time": "20:13",
+      "price": "277.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-7M9"
+    },
+    {
+      "airline": "AA",
+      "number": "349",
+      "departure_airport": "ORD",
+      "departure_time": "19:06",
+      "arrival_airport": "LAX",
+      "arrival_time": "23:55",
+      "price": "295.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "UA",
+      "number": "350",
+      "departure_airport": "LAX",
+      "departure_time": "07:11",
+      "arrival_airport": "ORD",
+      "arrival_time": "12:11",
+      "price": "208.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "AA",
+      "number": "351",
+      "departure_airport": "LAX",
+      "departure_time": "08:41",
+      "arrival_airport": "ORD",
+      "arrival_time": "13:53",
+      "price": "226.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "UA",
+      "number": "352",
+      "departure_airport": "LAX",
+      "departure_time": "10:56",
+      "arrival_airport": "ORD",
+      "arrival_time": "16:20",
+      "price": "244.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "AA",
+      "number": "353",
+      "departure_airport": "LAX",
+      "departure_time": "13:26",
+      "arrival_airport": "ORD",
+      "arrival_time": "18:26",
+      "price": "262.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "UA",
+      "number": "354",
+      "departure_airport": "LAX",
+      "departure_time": "16:11",
+      "arrival_airport": "ORD",
+      "arrival_time": "21:23",
+      "price": "280.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "UA-738"
+    },
+    {
+      "airline": "AA",
+      "number": "355",
+      "departure_airport": "LAX",
+      "departure_time": "19:41",
+      "arrival_airport": "ORD",
+      "arrival_time": "01:05",
+      "price": "298.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "356",
+      "departure_airport": "SEA",
+      "departure_time": "06:39",
+      "arrival_airport": "LAX",
+      "arrival_time": "09:29",
+      "price": "147.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AA",
+      "number": "357",
+      "departure_airport": "SEA",
+      "departure_time": "08:09",
+      "arrival_airport": "LAX",
+      "arrival_time": "11:11",
+      "price": "165.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "358",
+      "departure_airport": "SEA",
+      "departure_time": "10:24",
+      "arrival_airport": "LAX",
+      "arrival_time": "13:38",
+      "price": "183.00",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AA",
+      "number": "359",
+      "departure_airport": "SEA",
+      "departure_time": "12:54",
+      "arrival_airport": "LAX",
+      "arrival_time": "15:44",
+      "price": "201.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "360",
+      "departure_airport": "SEA",
+      "departure_time": "15:39",
+      "arrival_airport": "LAX",
+      "arrival_time": "18:41",
+      "price": "219.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-220"
+    },
+    {
+      "airline": "AA",
+      "number": "361",
+      "departure_airport": "SEA",
+      "departure_time": "19:09",
+      "arrival_airport": "LAX",
+      "arrival_time": "22:23",
+      "price": "237.00",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-321"
+    },
+    {
+      "airline": "DL",
+      "number": "362",
+      "departure_airport": "LAX",
+      "departure_time": "07:14",
+      "arrival_airport": "SEA",
+      "arrival_time": "10:39",
+      "price": "150.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "not_available",
+          "price": null
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AA",
+      "number": "363",
+      "departure_airport": "LAX",
+      "departure_time": "08:44",
+      "arrival_airport": "SEA",
+      "arrival_time": "12:21",
+      "price": "168.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "364",
+      "departure_airport": "LAX",
+      "departure_time": "10:59",
+      "arrival_airport": "SEA",
+      "arrival_time": "14:48",
+      "price": "186.50",
+      "baggage": {
+        "carry_on": {
+          "status": "included",
+          "price": null
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "35.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AA",
+      "number": "365",
+      "departure_airport": "LAX",
+      "departure_time": "13:29",
+      "arrival_airport": "SEA",
+      "arrival_time": "16:54",
+      "price": "204.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "AA-738"
+    },
+    {
+      "airline": "DL",
+      "number": "366",
+      "departure_airport": "LAX",
+      "departure_time": "16:14",
+      "arrival_airport": "SEA",
+      "arrival_time": "19:51",
+      "price": "222.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "25.00"
+        },
+        "checked_bag": {
+          "status": "extra",
+          "price": "45.00"
+        }
+      },
+      "aircraft_code": "DL-321"
+    },
+    {
+      "airline": "AA",
+      "number": "367",
+      "departure_airport": "LAX",
+      "departure_time": "19:44",
+      "arrival_airport": "SEA",
+      "arrival_time": "23:33",
+      "price": "240.50",
+      "baggage": {
+        "carry_on": {
+          "status": "extra",
+          "price": "20.00"
+        },
+        "checked_bag": {
+          "status": "included",
+          "price": null
+        }
+      },
+      "aircraft_code": "AA-738"
+    }
+  ]
+}
