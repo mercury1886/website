@@ -6,7 +6,7 @@ React + Vite single-page application with a PHP API for searching and reviewing 
 
 This project was built for the FlightHub PHP coding assignment. It lets a single passenger search airport pairs, browse one-way or round-trip options, filter and sort fares, review itinerary details, and complete a checkout flow.
 
-The frontend is a React SPA. The backend is a small PHP API that serves airport search and trip-search endpoints from seed data in `api/data/sample-data.json`.
+The frontend is a React SPA. The backend is a small PHP API that serves airport search and trip-search endpoints from the seed files in `api/data/`.
 
 ## Current features
 
@@ -52,60 +52,67 @@ The frontend is a React SPA. The backend is a small PHP API that serves airport 
 
 ## Sample data structure
 
-Seed data lives in `api/data/sample-data.json`.
+Seed data lives in:
 
-The file follows the same overall structure as the assignment example, with a few added fields used by this build such as airline logos, aircraft records, aircraft codes, and baggage details.
+- `api/data/airports.json` for airport search
+- `api/data/sample-data.json` for airlines, aircraft, and flights
+
+The overall structure follows the assignment example, with a few added fields used by this build such as airline logos, aircraft records, aircraft codes, and baggage details.
 
 ```json
 {
-  "airlines": [
-    {
-      "code": "AC",
-      "name": "Air Canada",
-      "logo": "/airlines/ac.png"
-    }
-  ],
-  "aircraft": [
-    {
-      "code": "AC-220",
-      "model": "Airbus A220-300"
-    }
-  ],
-  "airports": [
-    {
-      "code": "YUL",
-      "city_code": "YMQ",
-      "name": "Pierre Elliott Trudeau International",
-      "city": "Montreal",
-      "country_code": "CA",
-      "region_code": "QC",
-      "latitude": 45.457714,
-      "longitude": -73.749908,
-      "timezone": "America/Montreal"
-    }
-  ],
-  "flights": [
-    {
-      "airline": "AC",
-      "number": "301",
-      "aircraft_code": "AC-220",
-      "departure_airport": "YUL",
-      "departure_time": "07:35",
-      "arrival_airport": "YVR",
-      "arrival_time": "10:05",
-      "price": "273.23",
-      "baggage": {
-        "carry_on": {
-          "status": "included",
-          "price": null
-        },
-        "checked_bag": {
-          "status": "extra",
-          "price": "35.00"
+  "airports.json": {
+    "airports": [
+      {
+        "code": "YUL",
+        "city_code": "YMQ",
+        "name": "Pierre Elliott Trudeau International",
+        "city": "Montreal",
+        "country_code": "CA",
+        "region_code": "QC",
+        "latitude": 45.457714,
+        "longitude": -73.749908,
+        "timezone": "America/Montreal"
+      }
+    ]
+  },
+  "sample-data.json": {
+    "airlines": [
+      {
+        "code": "AC",
+        "name": "Air Canada",
+        "logo": "/airlines/ac.png"
+      }
+    ],
+    "aircraft": [
+      {
+        "code": "AC-220",
+        "model": "Airbus A220-300"
+      }
+    ],
+    "flights": [
+      {
+        "airline": "AC",
+        "number": "301",
+        "aircraft_code": "AC-220",
+        "departure_airport": "YUL",
+        "departure_time": "07:35",
+        "arrival_airport": "YVR",
+        "arrival_time": "10:05",
+        "price": "273.23",
+        "baggage": {
+          "carry_on": {
+            "status": "included",
+            "price": null
+          },
+          "checked_bag": {
+            "status": "extra",
+            "price": "35.00"
+          }
         }
       }
-    }
-  ]
+    ]
+  }
 }
 ```
 
@@ -252,6 +259,6 @@ Implemented in the current build:
 
 ## Notes
 
-- Sample data lives in `api/data/sample-data.json`.
+- Sample data lives in `api/data/airports.json` and `api/data/sample-data.json`.
 - Airline logos used by the UI live in `public/airlines/`.
 - Additional project notes and planning documents live in `docs/`.

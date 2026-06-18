@@ -670,11 +670,31 @@ function loadSampleData(): array
 
     $decoded = json_decode($rawData, true);
 
-    if (!is_array($decoded) || !isset($decoded['airports'], $decoded['airlines'], $decoded['flights'], $decoded['aircraft'])) {
+    if (!is_array($decoded) || !isset($decoded['airlines'], $decoded['flights'], $decoded['aircraft'])) {
         fail('Sample data is invalid.');
     }
 
+    $decoded['airports'] = loadAirportsData();
+
     return $decoded;
+}
+
+function loadAirportsData(): array
+{
+    $filePath = __DIR__ . '/data/airports.json';
+    $rawData = file_get_contents($filePath);
+
+    if ($rawData === false) {
+        fail('Could not read airport data.');
+    }
+
+    $decoded = json_decode($rawData, true);
+
+    if (!is_array($decoded) || !isset($decoded['airports']) || !is_array($decoded['airports'])) {
+        fail('Airport data is invalid.');
+    }
+
+    return $decoded['airports'];
 }
 
 function filterAirports(array $airports, string $query): array

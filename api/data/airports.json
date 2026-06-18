@@ -1,0 +1,114 @@
+{
+  "airports": [
+    {
+      "code": "YUL",
+      "city_code": "YMQ",
+      "name": "Pierre Elliott Trudeau International",
+      "city": "Montreal",
+      "country_code": "CA",
+      "region_code": "QC",
+      "latitude": 45.457714,
+      "longitude": -73.749908,
+      "timezone": "America/Montreal"
+    },
+    {
+      "code": "YVR",
+      "city_code": "YVR",
+      "name": "Vancouver International",
+      "city": "Vancouver",
+      "country_code": "CA",
+      "region_code": "BC",
+      "latitude": 49.194698,
+      "longitude": -123.179192,
+      "timezone": "America/Vancouver"
+    },
+    {
+      "code": "YYZ",
+      "city_code": "YTO",
+      "name": "Toronto Pearson International",
+      "city": "Toronto",
+      "country_code": "CA",
+      "region_code": "ON",
+      "latitude": 43.677717,
+      "longitude": -79.624819,
+      "timezone": "America/Toronto"
+    },
+    {
+      "code": "YYC",
+      "city_code": "YYC",
+      "name": "Calgary International",
+      "city": "Calgary",
+      "country_code": "CA",
+      "region_code": "AB",
+      "latitude": 51.131457,
+      "longitude": -114.010278,
+      "timezone": "America/Edmonton"
+    },
+    {
+      "code": "JFK",
+      "city_code": "NYC",
+      "name": "John F. Kennedy International",
+      "city": "New York",
+      "country_code": "US",
+      "region_code": "NY",
+      "latitude": 40.641311,
+      "longitude": -73.778139,
+      "timezone": "America/New_York"
+    },
+    {
+      "code": "LAX",
+      "city_code": "LAX",
+      "name": "Los Angeles International",
+      "city": "Los Angeles",
+      "country_code": "US",
+      "region_code": "CA",
+      "latitude": 33.941589,
+      "longitude": -118.40853,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "code": "ORD",
+      "city_code": "CHI",
+      "name": "O'Hare International",
+      "city": "Chicago",
+      "country_code": "US",
+      "region_code": "IL",
+      "latitude": 41.974163,
+      "longitude": -87.907321,
+      "timezone": "America/Chicago"
+    },
+    {
+      "code": "MIA",
+      "city_code": "MIA",
+      "name": "Miami International",
+      "city": "Miami",
+      "country_code": "US",
+      "region_code": "FL",
+      "latitude": 25.795865,
+      "longitude": -80.287045,
+      "timezone": "America/New_York"
+    },
+    {
+      "code": "SEA",
+      "city_code": "SEA",
+      "name": "Seattle-Tacoma International",
+      "city": "Seattle",
+      "country_code": "US",
+      "region_code": "WA",
+      "latitude": 47.450249,
+      "longitude": -122.308817,
+      "timezone": "America/Los_Angeles"
+    },
+    {
+      "code": "BOS",
+      "city_code": "BOS",
+      "name": "Logan International",
+      "city": "Boston",
+      "country_code": "US",
+      "region_code": "MA",
+      "latitude": 42.365613,
+      "longitude": -71.00956,
+      "timezone": "America/New_York"
+    }
+  ]
+}
