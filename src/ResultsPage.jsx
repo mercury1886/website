@@ -35,7 +35,7 @@ function ResultsPage({
 
         <div className="results-hero-actions">
           <Link className="ghost-link" to="/">
-            Refine search
+            Back
           </Link>
           <div className="results-hero-meta">
             <span>{tripTypeLabel}</span>
