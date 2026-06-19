@@ -236,10 +236,6 @@ function SearchPage({
         <div className="hero-copy">
           <p className="eyebrow">Search</p>
           <h1>The premier way to find cheap tickets.</h1>
-          <p className="hero-copy-text">
-            Search routes, compare fares, and move into a dedicated trip view
-            once you find a match worth chasing.
-          </p>
         </div>
 
         <div className="route-board">
