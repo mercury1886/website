@@ -655,6 +655,24 @@ function CheckoutPage({ tripResults, form }) {
     }
   }, [stage])
 
+  useEffect(() => {
+    if (stage !== 'processing' && stage !== 'success') {
+      return undefined
+    }
+
+    const previousBodyOverflow = document.body.style.overflow
+    const previousHtmlOverflow = document.documentElement.style.overflow
+
+    window.scrollTo(0, 0)
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousHtmlOverflow
+    }
+  }, [stage])
+
   function updateTraveler(index, field, value) {
     setCheckoutDetails((currentDetails) => ({
       ...currentDetails,
