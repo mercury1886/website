@@ -204,7 +204,7 @@ npm run build
 ```
 
 
-### IF the application is being run through Docker use thse commands:
+### If the application is being run through Docker use thse commands:
 
 API Test
 ```bash
