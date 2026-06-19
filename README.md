@@ -6,7 +6,7 @@ React + Vite single-page application with a PHP API for searching and reviewing 
 
 This project was built for the FlightHub PHP coding assignment. It lets a single passenger search airport pairs, browse one-way or round-trip options, filter and sort fares, review itinerary details, and complete a checkout flow.
 
-The frontend is a React SPA. The backend is a small PHP API that serves airport search and trip-search endpoints from the seed files in `api/data/`.
+The frontend is a React SPA. The backend is a small PHP API that serves airport search and trip search endpoints from the seed files in `api/data/`.
 
 ## Current features
 
@@ -40,13 +40,12 @@ The frontend is a React SPA. The backend is a small PHP API that serves airport 
 |   |-- bootstrap.php
 |   |-- data/
 |   |-- public/
-|   |   `-- index.php
+|   |   |-- index.php
+|   |   `-- router.php
 |   |-- routes/
 |   `-- tests/
-|-- docs/
 |-- public/
 |   `-- airlines/
-|-- scripts/
 `-- src/
 ```
 
@@ -57,7 +56,7 @@ Seed data lives in:
 - `api/data/airports.json` for airport search
 - `api/data/sample-data.json` for airlines, aircraft, and flights
 
-The overall structure follows the assignment example, with a few added fields used by this build such as airline logos, aircraft records, aircraft codes, and baggage details.
+The overall structure follows the assignment example, with a few added fields used by this build such as airline logos, aircraft records, aircraft codes, and baggage counts.
 
 ```json
 {
@@ -152,7 +151,7 @@ npm ci
 ### Start the PHP API
 
 ```bash
-php -S 0.0.0.0:8000 -t api/public
+php -S 0.0.0.0:8000 -t api/public api/public/router.php
 ```
 
 ### Start the React app
@@ -176,7 +175,7 @@ Health check for the PHP API.
 
 Returns the first page of airports from seed data.
 
-### `GET /airports/search?query=YUL`
+### `GET /airports?query=YUL`
 
 Searches airports by:
 
@@ -200,8 +199,6 @@ Search payload:
 }
 ```
 
-Extended endpoint documentation is available in [docs/web-services.md](docs/web-services.md).
-
 ## Testing
 
 ### Frontend linting
@@ -219,7 +216,7 @@ npm run build
 ### PHP API tests
 
 ```bash
-docker compose run --rm --no-deps api composer test
+npm run test
 ```
 
 If you are running entirely through Docker, use:
@@ -239,7 +236,6 @@ Implemented in the current build:
 - Round-trip support
 - Local environment setup instructions
 - Automated tests
-- Web service documentation
 - Preferred airline filtering
 - Trip sorting
 - Trip pagination
@@ -248,4 +244,3 @@ Implemented in the current build:
 
 - Sample data lives in `api/data/airports.json` and `api/data/sample-data.json`.
 - Airline logos used by the UI live in `public/airlines/`.
-- Additional project notes and planning documents live in `docs/`.
