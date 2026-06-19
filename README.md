@@ -203,15 +203,15 @@ npm run lint
 npm run build
 ```
 
-### PHP API tests
 
+### IF the application is being run through Docker use thse commands:
+
+API Test
 ```bash
-docker compose run --rm --no-deps api composer test
+docker compose exec api composer test
 ```
 
-IF the application is being run through Docker use this commands:
-
+Lint Test
 ```bash
 docker compose exec frontend npm run lint
-docker compose exec api composer test
 ```
