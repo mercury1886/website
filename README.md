@@ -1,27 +1,21 @@
 # Trip Builder
 
-React + Vite single-page application with a PHP API for searching and reviewing airline trips.
-
-## Overview
-
-This project was built for the FlightHub PHP coding assignment. It lets a single passenger search airport pairs, browse one-way or round-trip options, filter and sort fares, review itinerary details, and complete a checkout flow.
-
-The frontend is a React SPA. The backend is a small PHP API that serves airport search and trip search endpoints from the seed files in `api/data/`.
+Creqated using React + Vite for the front end and PHP for the API.
 
 ## Current features
 
 - Live airport search by airport code, city code, city, or airport name
 - One-way and round-trip trip building
-- Timezone-aware flight timing in the PHP API
+- Timezone-aware search
 - Trip results with:
-  - Best, cheapest, and fastest ranking views
+  - Best, cheapest, and fastest
   - Preferred airline filter
   - Price ceiling filter
-  - Stop filters
+  - Stop filters (Direct, 1+ stop, 2+ stop)
   - Baggage filters
   - Pagination
-- Trip details modal
-- Trip review and checkout flow
+- Trip details
+- Trip review and checkout
 - Automated PHP API tests with PHPUnit
 - Docker-based local setup
 
@@ -55,8 +49,6 @@ Seed data lives in:
 
 - `api/data/airports.json` for airport search
 - `api/data/sample-data.json` for airlines, aircraft, and flights
-
-The overall structure follows the assignment example, with a few added fields used by this build such as airline logos, aircraft records, aircraft codes, and baggage counts.
 
 ```json
 {
@@ -126,8 +118,6 @@ docker compose up --build
 - Frontend: `http://localhost:5173`
 - API: `http://localhost:8000`
 
-The React app uses Vite proxying, so frontend requests hit the PHP API through `/api`.
-
 ### Stop the application
 
 ```bash
@@ -169,11 +159,11 @@ npm run dev
 
 ### `GET /health`
 
-Health check for the PHP API.
+Health Check
 
 ### `GET /airports`
 
-Returns the first page of airports from seed data.
+Returns the first page of airports from sample data.
 
 ### `GET /airports?query=YUL`
 
@@ -216,31 +206,12 @@ npm run build
 ### PHP API tests
 
 ```bash
-npm run test
+docker compose run --rm --no-deps api composer test
 ```
 
-If you are running entirely through Docker, use:
+IF the application is being run through Docker use this commands:
 
 ```bash
 docker compose exec frontend npm run lint
 docker compose exec api composer test
 ```
-
-## Assignment coverage
-
-Implemented in the current build:
-
-- PHP backend
-- React SPA frontend
-- One-way trip support
-- Round-trip support
-- Local environment setup instructions
-- Automated tests
-- Preferred airline filtering
-- Trip sorting
-- Trip pagination
-
-## Notes
-
-- Sample data lives in `api/data/airports.json` and `api/data/sample-data.json`.
-- Airline logos used by the UI live in `public/airlines/`.
